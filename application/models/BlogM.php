@@ -97,8 +97,16 @@ class BlogM extends CI_Model
      * @param $id
      * 获取某一条日志的信息
      */
-    public function find($id)
+    public function find()
     {
+        /**
+         * 获取id值进行修改，不管是post还是get都能获取
+         */
+        $id = $this->input->get('id',true);
+        if ($id == null) {
+            $id = $this->input->post('id',true);
+        }
+
         $this->db->from('blog_log');
         $this->db->where('id', $id);
         $data = $this->db->get();

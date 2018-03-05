@@ -50,16 +50,17 @@ class BlogC extends CI_Controller
     public function delete($id)
     {
         $this->load->model('BlogM', 'bm');
-        $data = $this->bm->delete($id);
+        $this->bm->delete($id);
         redirect(site_url('admin/blogc/lst'));
     }
 
-    public function save($id=10)
+    public function save()
     {
+
         //生成日志模型
         $this->load->model('BlogM');
         //先取出要修改的记录的信息
-        $info = $this->BlogM->find($id);
+        $info = $this->BlogM->find();
         //echo var_dump($info);die;
 
         /**-------先定义表单验证规则------*/
