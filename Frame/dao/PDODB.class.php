@@ -154,6 +154,7 @@ class PDODB implements I_DAO
         } catch (PDOException $e) {
             $this->$result;
         }
+        return $result;
     }
 
     /**

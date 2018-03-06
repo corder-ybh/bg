@@ -18,22 +18,32 @@ return array(
 
     //应用程序配置
     'App' => array(
-        'default_platform' => 'Test',
+        'default_platform' => 'Home',
         'dao' => 'pdo',//mysql 、 pdo
     ),
 
     //前台组
     'Home' => array(
-
+        'default_controller' => 'Index',
+        'default_action' => 'index'
     ),
     //后台组
     'Back' => array(
-
+        'default_controller' => 'Admin',
+        'default_action' => 'login'
     ),
     //测试平台组
     'Test' => array(
         'default_controller' => 'Stu',
         'default_action' => 'list'
+    ),
+    //验证码信息组
+    'Captcha' => array(
+        'width' => 80,
+        'height' => 32,
+        'pixelnum' => 0.03,  //干扰点密度
+        'linenum' => 5,      //干扰先数量
+        'stringnum' => 4,    //验证码字符个数
     ),
     //其他
 );

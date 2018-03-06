@@ -47,6 +47,8 @@ class Frame
         define('VENDOR_DIR', ROOT_DIR . 'Vendor/');
         //Smarty目录
         define('SMARTY_DIR', VENDOR_DIR . 'Smarty/');
+        //公开目录
+        define('PUBLIC_DIR', ROOT_DIR, 'Public/');
     }
 
     /**
@@ -82,6 +84,10 @@ class Frame
         define('CURRENT_CON_DIR', APP_DIR . PLATFORM . '/Controller/');
         define('CURRENT_MODEL_DIR', APP_DIR . PLATFORM . '/Model/');
         define('CURRENT_VIEW_DIR', APP_DIR . PLATFORM . '/View/');
+        // 以下三个目录常量只能用相对路径
+        define('CSS_DIR', '/Public/' . PLATFORM . '/css');
+        define('JS_DIR', '/Public/' . PLATFORM . '/js');
+        define('IMAGES_DIR', '/Public/' . PLATFORM . '/images');
     }
 
     /**
@@ -99,6 +105,7 @@ class Frame
             'PDODB' => DAO_DIR . 'PDODB.class.php',
             'I_DAO' => DAO_DIR . 'I_DAO.interface.php',
             'Smarty' => SMARTY_DIR . 'Smarty.class.php',
+            'Captcha' => VENDOR_DIR . 'Captcha.class.php',
         );
         //判断是否为核心类
         if (isset($frame_class_list[$class_name]))
