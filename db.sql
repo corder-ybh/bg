@@ -1,4 +1,3 @@
-CREATE  DATABASE blog;
 USE blog;
 SET NAMES utf8;
 CREATE  TABLE blog_log (
@@ -17,8 +16,16 @@ CREATE  TABLE blog_log (
 
 #后台管理员表
 CREATE TABLE bg_admin(
-    admin_id tinyint unsigned
-)
+    admin_id tinyint unsigned PRIMARY KEY AUTO_INCREMENT,
+    admin_name VARCHAR(20) not NULL UNIQUE KEY ,
+    admin_pass CHAR(32) NOT NULL ,
+    login_ip VARCHAR(30) NOT NULL ,
+    login_nums INT UNSIGNED NOT NULL DEFAULT 0,
+    login_time INT UNSIGNED NOT NULL
+);
+INSERT INTO bg_admin(admin_name, admin_pass,login_ip,login_time)
+    VALUE
+    ('admin',md5('12345678'),'127.0.0.1',UNIX_TIMESTAMP());
 
 -- 创建分类表
 CREATE TABLE bg_category(
@@ -37,3 +44,17 @@ INSERT INTO blog.bg_category VALUES
     (5,'经典语录',1,4,'假鸡汤'),
     (6,'PHP课堂',0,2,'PHP很好用'),
     (7,'HTML',6,1,'还不是很懂');
+
+#创建文章表
+CREATE TABLE bg_article (
+    art_id SMALLINT UNSIGNED PRIMARY KEY auto_increment,
+    cate_id SMALLINT UNSIGNED NOT NULL COMMENT '文章所属分类',
+    title VARCHAR(50) NOT NULL COMMENT '文章标题',
+    thumb VARCHAR(100) NOT NULL DEFAULT 'default.jpg',
+    art_desc VARCHAR(255) COMMENT '文章描述',
+    content text NOT NULL COMMENT '文章内容',
+    author VARCHAR(20) NOT NULL COMMENT '文章作者',
+    hits SMALLINT UNSIGNED NOT NULL DEFAULT 0 COMMENT '点击次数',
+    addtime INT UNSIGNED NOT NULL COMMENT '添加时间',
+    is_del enum('0','1') NOT NULL DEFAULT '0' COMMENT '是否删除'
+);
