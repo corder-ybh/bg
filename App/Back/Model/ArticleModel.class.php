@@ -87,9 +87,14 @@ class ArticleModel extends Model
      */
     public function getDelArt()
     {
+        //增加分页相关
+        $pageNum = isset($_GET['pageNum']) ? $_GET['pageNum'] : 1;
+        $rowsPerPage = $GLOBALS['conf']['Page']['rowPerPage'];
+        $offset = ($pageNum - 1) * $rowsPerPage;
+
         $sql = "SELECT a.*,c.cate_name FROM bg_article a 
                     LEFT JOIN bg_category c ON a.cate_id=c.cate_id
-                    WHERE a.is_del='1';";
+                    WHERE a.is_del='1' LIMIT $offset, $rowsPerPage";
         return $this->dao->fetchAll($sql);
     }
 
@@ -129,6 +134,15 @@ class ArticleModel extends Model
     public function getRowCount()
     {
         $sql = "SELECT COUNT(*) FROM bg_article WHERE is_del='0'";
+        return $this->dao->fetchColumn($sql);
+    }
+
+    /**
+     * 获取已删除文章的总记录数
+     */
+    public function getDelRowCount()
+    {
+        $sql = "SELECT COUNT(*) FROM bg_article WHERE is_del='1'";
         return $this->dao->fetchColumn($sql);
     }
 }

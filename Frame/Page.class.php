@@ -31,7 +31,7 @@ class Page
     public function getStrPage()
     {
         //计算总页数 ceil?
-        $pages = ceil($this->rowCount / $this->rowPerPage);
+        $pages = ceil($this->rowCount / $this->rowPerPage) !=0 ? ceil($this->rowCount / $this->rowPerPage): 1;
         //确定当前选中的页码数
         $pageNum = isset($_GET['pageNum']) ? $_GET['pageNum'] : 1;
         //定义页码字符串
@@ -68,9 +68,9 @@ class Page
         for ($i=$startNum;$i<=$endNum;$i++) {
             //选中的当前页标红
             if ($i == $pageNum) {
-                $strPage .= "<a href='{$this->url}pageNum=$i'><font color='red'>$i</font></a>";
+                $strPage .= "<a href='{$this->url}pageNum=$i'><font color='red'>[$i]</font></a>";
             } else {
-                $strPage .= "<a href='{$this->url}pageNum=$i'>$i</a>";
+                $strPage .= "<a href='{$this->url}pageNum=$i'>[$i]</a>";
             }
         }
         //拼凑出下一页,如果当前页不是最后一页，那么就有下一页
@@ -80,6 +80,7 @@ class Page
         }
         //拼凑出"尾页"
         $strPage .= "<a href='{$this->url}pageNum=$pages'>尾页</a>";
+
         //拼凑出总页码数
         $strPage .= "|总页数:$pages";
         //返回页码字符串

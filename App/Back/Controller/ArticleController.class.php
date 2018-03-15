@@ -229,6 +229,18 @@ class ArticleController extends PlatformController
         $artInfo = $article->getDelArt();
         //分配变量
         $this->assign('artInfo', $artInfo);
+
+        //添加分页相关代码
+        $rowPerPage = $GLOBALS['conf']['Page']['rowPerPage'];
+        $maxNum = $GLOBALS['conf']['Page']['maxNum'];
+        $url = "index.php?p=Back&c=Article&a=recycle&";
+        $rowCount = $article->getDelRowCount();    //获取总记录数
+        //实例化分页类
+        $page = new Page($rowPerPage, $rowCount, $maxNum, $url);
+        $strPage = $page->getStrPage();
+        //分配页码字符串
+        $this->assign('strPage', $strPage);
+
         //输出视图文件
         $this->display('recycle.html');
     }
