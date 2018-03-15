@@ -4,8 +4,8 @@
     $(function () {
         //获取btnAdd按钮
         $('#btnAdd').bind('click',function () {
-            //设置"添加文章"链接
-            window.location.href = 'index.php?p=Back&c=Article&a=add';
+            //设置"文章首页"链接
+            window.location.href = 'index.php?p=Back&c=Article&a=index';
         });
     });
     //回收站按钮
@@ -18,14 +18,14 @@
     });
 </script>
 <div class="admin">
-	<form action="index.php?p=Back&c=Article&a=delAll" method="POST">
+	<form action="index.php?p=Back&c=Article&a=realDelAll" method="POST">
     <div class="panel admin-panel">
     	<div class="panel-head"><strong>文章列表</strong></div>
         <div class="padding border-bottom">
             <input type="button" class="button button-small checkall" name="checkall" checkfor="art_id[]" value="全选" />
-            <input type="button" id="btnAdd" class="button button-small border-green" value="添加文章" />
-            <input type="submit" class="button button-small border-yellow" onclick="return confirm('确认全部删除吗？')"  value="批量删除" />
-            <input type="button" id="btnRecycle" class="button button-small border-blue" value="回收站" />
+            <input type="button" id="btnAdd" class="button button-small border-green" value="文章首页" />
+            <input type="submit" class="button button-small border-yellow" onclick="return confirm('确认全部删除吗？')"  value="批量彻底删除" />
+            <input type="button" id="btnRecycle" class="button button-small border-blue" value="批量还原" />
         </div>
         <table class="table table-hover">
         	<tr>
@@ -44,14 +44,21 @@
                 <td>{$row.hits}</td>
                 <td>{$row.addtime|date_format:'%Y-%m-%d %H:%M:%S'}</td>
                 <td>
-                    <a class="button border-blue button-little" href="index.php?p=Back&c=Article&a=edit&art_id={$row.art_id}">修改</a>
-                    <a class="button border-yellow button-little" href="index.php?p=Back&c=Article&a=del&art_id={$row.art_id}" onclick="return confirm('确定要删除吗？')">删除</a>
+                    <a class="button border-blue button-little" href="index.php?p=Back&c=Article&a=recover&art_id={$row.art_id}">还原</a>
+                    <a class="button border-yellow button-little" href="index.php?p=Back&c=Article&a=realDel&art_id={$row.art_id}" onclick="return confirm('确定要彻底删除吗？')">彻底删除</a>
                 </td>
             </tr>
             {/foreach}
         </table>
 		<div class="panel-foot text-center">
-            {$strPage}
+            <a href="#"><<上一页</a>
+            <a href="#">1</a>
+            <a href="#">2</a>
+            <a href="#">3</a>
+            <a href="#">4</a>
+            <a href="#">5</a>
+            <a href="#">下一页>></a>
+			总页数：5
         </div>
     </div>
     </form>

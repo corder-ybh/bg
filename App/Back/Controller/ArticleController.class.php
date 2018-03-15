@@ -18,6 +18,19 @@ class ArticleController extends PlatformController
         $artInfo = $article->getArticle();
         //分配变量
         $this->assign('artInfo', $artInfo);
+
+        //以下为分页相关代码
+        $rowPerPage = $GLOBALS['conf']['Page']['rowPerPage'];
+        $maxNum = $GLOBALS['conf']['Page']['maxNum'];
+        $url = "index.php?p=Back&c=Article&a=index&";
+        $rowCount = $article->getRowCount();    //获取总记录数
+        //实例化分页类
+        $page = new Page($rowPerPage, $rowCount, $maxNum, $url);
+        $strPage = $page->getStrPage();
+        //分配页码字符串
+        $this->assign('strPage', $strPage);
+        //分页到此结束
+
         //输出视图文件
         $this->display('index.html');
     }
@@ -164,6 +177,115 @@ class ArticleController extends PlatformController
             $this->jump('index?p=Back&c=Article&a=index');
         } else {
             $this->jump("index.php?p=Back&c=Article&a=edit&art_id={$art['art_id']}", ':( 发生位置错误，修改文章失败');
+        }
+    }
+
+    /**
+     * 处理文章删除请求
+     */
+    public function delAction()
+    {
+        //获取要删除的文章的id号
+        $art_id = $_GET['art_id'];
+        //实例化模型
+        $article = Factory::M('ArticleModel');
+        $result = $article->delArtById($art_id);
+        if ($result) {
+            $this->jump('index.php?p=Back&c=Article&a=index');
+        } else {
+            $this->jump('index.php?p=Back&c=Article&a=index', ':( 发生未知错误，删除文章失败！');
+        }
+    }
+
+    /**
+     * 根据id号批量删除文章
+     */
+    public function delAllAction()
+    {
+        //先判断用户是否选择了文章
+        if (!isset($_POST['art_id'])) {
+            //说明没有选择文章
+            $this->jump('index.php?p=Back&c=Article&a=index',':( 请先选择要删除的文章！');
+        }
+        //获取要删除的所有文章的id
+        $art_ids = implode(',', $_POST['art_id']);
+        //调用模型
+        $article = Factory::M('ArticleModel');
+        $result = $article->delAllArt($art_ids);
+        if ($result) {
+            $this->jump('index.php?p=Back&c=Article&a=index');
+        } else {
+            $this->jump('index.php?p=Back&c=Article&a=index', ':( 发生位置错误，批量删除失败');
+        }
+    }
+
+    /**
+     * 显示回收站页面
+     */
+    public function recycleAction()
+    {
+        //调用模型，提取所有已经被逻辑删除的文章信息
+        $article = Factory::M('ArticleModel');
+        $artInfo = $article->getDelArt();
+        //分配变量
+        $this->assign('artInfo', $artInfo);
+        //输出视图文件
+        $this->display('recycle.html');
+    }
+
+    /**
+     * 根据id号实现文章还原操作
+     */
+    public function recoverAction()
+    {
+        //获取需要还原的文章的id号
+        $art_id = $_GET['art_id'];
+        //调用模型
+        $article = Factory::M('ArticleModel');
+        $result = $article->recoverArtById($art_id);
+        if ($result) {
+            $this->jump('index.php?p=Back&c=Article&a=recycle');
+        } else {
+            $this->jump('index.php?p=Back&c=Article&a=recycle', ':( 发生未知错误，还原文章失败！');
+        }
+    }
+
+    /**
+     * 根据id号实现彻底删除功能
+     */
+    public function realDelAction()
+    {
+        //获取需要彻底删除的文章的id号
+        $art_id = $_GET['art_id'];
+        //调用模型
+        $article = Factory::M('ArticleModel');
+        $result = $article->realDealArtById($art_id);
+        if ($result) {
+            $this->jump('index.php?p=Back&c=Article&a=recycle');
+        } else {
+            $this->jump('index.php?p=Back&c=Article&a=recycle', ':( 发生未知错误，彻底删除文章失败！');
+        }
+    }
+
+    /**
+     * 根据id号批量彻底删除
+     */
+    public function realDelAllAction()
+    {
+        //先判断用户是否选择了文章
+        if (!isset($_POST['art_id'])) {
+            //说明没有选择文章
+            $this->jump('index.php?p=Back&c=Article&a=recycle',':( 请选择要删除的文章');
+        }
+        //获取要彻底删除的所有文章的id号
+        $art_ids = implode(',', $_POST['art_id']);
+        //调用模型
+        $article = Factory::M('ArticleModel');
+        $result = $article->realDelAllArt($art_ids);
+        if ($result) {
+            $this->jump('index.php?p=Back&c=Article&a=recycle');
+        } else {
+            $this->jump('index.php?p=Back&c=Article&a=recycle',':( 发生未知错误，批量彻底删除失败！');
         }
     }
 }

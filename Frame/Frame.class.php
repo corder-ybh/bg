@@ -109,6 +109,7 @@ class Frame
             'Smarty' => SMARTY_DIR . 'Smarty.class.php',
             'Captcha' => VENDOR_DIR . 'Captcha.class.php',
             'Upload' => FRAME_DIR . 'Upload.class.php',
+            'Page' => FRAME_DIR . 'Page.class.php',
         );
         //判断是否为核心类
         if (isset($frame_class_list[$class_name]))

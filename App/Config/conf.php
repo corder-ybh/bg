@@ -45,5 +45,9 @@ return array(
         'linenum' => 5,      //干扰先数量
         'stringnum' => 4,    //验证码字符个数
     ),
-    //其他
+    //分页信息组
+    'Page' => array(
+        'rowPerPage' => 8,    //每页显示的记录数
+        'maxNum' => 5         //页面上能显示的最多页面
+    ),
 );
