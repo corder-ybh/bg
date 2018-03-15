@@ -48,7 +48,9 @@ class Frame
         //Smarty目录
         define('SMARTY_DIR', VENDOR_DIR . 'Smarty/');
         //公开目录
-        define('PUBLIC_DIR', ROOT_DIR, 'Public/');
+        define('PUBLIC_DIR', ROOT_DIR. 'Public/');
+        //上传目录
+        define('UPLOADS_DIR', ROOT_DIR. 'Uploads/');
     }
 
     /**
@@ -106,6 +108,7 @@ class Frame
             'I_DAO' => DAO_DIR . 'I_DAO.interface.php',
             'Smarty' => SMARTY_DIR . 'Smarty.class.php',
             'Captcha' => VENDOR_DIR . 'Captcha.class.php',
+            'Upload' => FRAME_DIR . 'Upload.class.php',
         );
         //判断是否为核心类
         if (isset($frame_class_list[$class_name]))

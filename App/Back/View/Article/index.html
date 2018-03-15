@@ -28,7 +28,7 @@
                 <th width="180">发布时间</th>
                 <th width="100">操作</th>
             </tr>
-            {foreach from=artInfo item='row'}
+            {foreach from=$artInfo item='row'}
             <tr>
                 <td><input type="checkbox" name="art_id[]" value="{$row.art_id}" /></td>
                 <td>{$row.cate_name}</td>
@@ -36,7 +36,7 @@
                 <td>{$row.hits}</td>
                 <td>{$row.addtime|date_format:'%Y-%m-%d %H:%M:%S'}</td>
                 <td>
-                    <a class="button border-blue button-little" href="#">修改</a> 
+                    <a class="button border-blue button-little" href="index.php?p=Back&c=Article&a=edit&art_id={$row.art_id}">修改</a>
                     <a class="button border-yellow button-little" href="#" >删除</a>
                 </td>
             </tr>

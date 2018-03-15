@@ -1,4 +1,6 @@
 {include file='../Public/public.html'}
+<!-- 添加在线编辑器 -->
+<script type="text/javascript" src="/App/Back/Public/ckeditor/ckeditor.js"></script>
 <div class="admin">
   <div class="tab">
     <div class="tab-head"> <strong>文章管理</strong>
@@ -60,7 +62,10 @@
               <label for="readme">文章内容</label>
             </div>
             <div class="field">
-              <textarea name="content" id="content" class="input" rows="8" cols="50" placeholder="请填写文章内容" data-validate="required:请填写文章内容"></textarea>
+              <textarea name="content" id="ckeditor" class="input" rows="8" cols="50" placeholder="请填写文章内容" data-validate="required:请填写文章内容"></textarea>
+              <script type="text/javascript">
+                CKEDITOR.replace('ckeditor');
+              </script>
             </div>
           </div>
           <div class="form-button">
