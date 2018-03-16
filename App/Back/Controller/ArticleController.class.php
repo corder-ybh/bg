@@ -300,4 +300,26 @@ class ArticleController extends PlatformController
             $this->jump('index.php?p=Back&c=Article&a=recycle',':( 发生未知错误，批量彻底删除失败！');
         }
     }
+
+    /**
+     * 设置文章是否推荐
+     */
+    public function ifRecommendAction()
+    {
+        //接收文章编号
+        $art_id = $_GET['art_id'];
+        //接收推荐状态
+        $is_recommend = $_GET['is_recommend'];
+        //接收当前页码
+        $pageNum = $_GET['pageNum'];
+        //调用模型
+        $article = Factory::M('ArticleModel');
+        $result = $article->updateRecommendById($art_id, $is_recommend);
+        if ($result) {
+            $this->jump("index.php?p=Back&c=Article&a=index&pageNum=$pageNum");
+        } else {
+            $this->jump("index.php?p=Back&c=Article&a=index&pageNum=$pageNum",':( 发生未知错误，设置推荐文章失败！');
+        }
+
+    }
 }

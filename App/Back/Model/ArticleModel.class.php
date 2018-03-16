@@ -20,7 +20,7 @@ class ArticleModel extends Model
         $addTime = time();
         //入库
         $sql = "insert into bg_article 
-           VALUES (null,$cate_id,'$title','$thumb','$art_desc','$content','$author',DEFAULT ,'$addTime',DEFAULT )";
+           VALUES (null,$cate_id,'$title','$thumb','$art_desc','$content','$author',DEFAULT ,'$addTime', DEFAULT ,DEFAULT )";
         return $this->dao->my_query($sql);
     }
 
@@ -144,5 +144,22 @@ class ArticleModel extends Model
     {
         $sql = "SELECT COUNT(*) FROM bg_article WHERE is_del='1'";
         return $this->dao->fetchColumn($sql);
+    }
+
+    /**
+     * 切换文章推荐状态
+     */
+    public function updateRecommendById($art_id, $is_recommend)
+    {
+        if ($is_recommend == 0)
+        {
+            $is_recommend = '1';
+        } elseif ($is_recommend == 1){
+            $is_recommend = 0;
+        } else {
+            return false;
+        }
+        $sql = "UPDATE bg_article SET is_recommend = '$is_recommend' WHERE art_id=$art_id";
+        return $this->dao->my_query($sql);
     }
 }

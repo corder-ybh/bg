@@ -58,3 +58,19 @@ CREATE TABLE bg_article (
     addtime INT UNSIGNED NOT NULL COMMENT '添加时间',
     is_del enum('0','1') NOT NULL DEFAULT '0' COMMENT '是否删除'
 );
+
+-- 文章表增加是否已推荐记录
+ALTER TABLE bg_article add is_recommend enum('0','1') NOT NULL
+DEFAULT '0' AFTER `addtime`;
+
+-- 创建站长信息表
+CREATE TABLE bg_master (
+  id TINYINT PRIMARY KEY auto_increment,
+  nickname VARCHAR(20) NOT NULL,
+  job VARCHAR(50) NOT NULL,
+  home VARCHAR(50) NOT NULL,
+  tel char(11) NOT NULL,
+  email VARCHAR(50) NOT NULL
+);
+INSERT INTO bg_master VALUES
+(NULL,'站长','执剑人','星云|A区','123456789','2270933604@qq.com');
