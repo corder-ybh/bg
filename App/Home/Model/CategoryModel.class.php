@@ -17,4 +17,14 @@ class CategoryModel extends Model
         return $this->dao->fetchAll($sql);
     }
 
+    /**
+     * 获取当前类别下的第一层子类别
+     * @param $pid 当前类别id
+     */
+    public function getSubCateByPid($pid)
+    {
+        $sql = "SELECT cate_id, cate_name FROM bg_category WHERE cate_pid=$pid";
+        return $this->dao->fetchAll($sql);
+    }
+
 }

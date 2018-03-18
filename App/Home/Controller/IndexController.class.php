@@ -13,10 +13,7 @@ class IndexController extends PlatformController
      */
     public function IndexAction()
     {
-        //调用模型
-        $category = Factory::M('CategoryModel');
-        //获取所有一级分类信息
-        $firstCate = $category->getFirstCate();
+        //获取一级分类信息放到了平台控制器中
         //调用Article模型
         $article = Factory::M('ArticleModel');
         //获取推荐文章信息
@@ -24,11 +21,18 @@ class IndexController extends PlatformController
         //获取站长信息
         $master = Factory::M('MasterModel');
         $masterInfo = $master->getMasterInfo();
+        //获取最新文章列表
+        $newArt = $article->getNewArt(8);
+        //获取最热推荐文章列表
+        $rmdArtByHits = $article->getRmdByHits(8);
 
         //分配变量
-        $this->assign('firstCate', $firstCate);
         $this->assign('recommendArt', $recommendArt);
         $this->assign('masterInfo', $masterInfo);
+        //分配最新和最热文章列表的变量
+        $this->assign('newArt', $newArt);
+        $this->assign('rmdArtByHits', $rmdArtByHits);
+
         //显示输出
         $this->display('index.html');
     }
