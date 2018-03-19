@@ -42,6 +42,12 @@ class ArticleController extends PlatformController
         $list = $article->getAllCateName($cate_id);
         //分配变量
         $this->assign('list', $list);
+        //获取当前分类下点击排行文章
+        $sortByHits = $article->getSortByHits($cate_id, 9);
+        $this->assign('sortByHits', $sortByHits);
+        //获取当前分类下推荐文章
+        $sortByRecommend = $article->getSortByRecommend($cate_id, 9);
+        $this->assign('sortByRecommend', $sortByRecommend);
 
         //加载视图文件
         $this->display('index.html');

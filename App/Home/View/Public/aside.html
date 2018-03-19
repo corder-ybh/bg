@@ -8,14 +8,14 @@
       <h2>
         <p>点击排行</p>
       </h2>
-      <ul class="ph_n"><!--
+      <ul class="ph_n">
         {foreach from=$sortByHits item='row' name='n1'}
           {if $smarty.foreach.n1.iteration <= 3}      
         <li><span class="num{$smarty.foreach.n1.iteration}">{$smarty.foreach.n1.iteration}</span><a href="index.php?p=Home&c=Article&a=show&art_id={$row.art_id}">{$row.title}</a></li>
           {else}
           <li><span>{$smarty.foreach.n1.iteration}</span><a href="index.php?p=Home&c=Article&a=show&art_id={$row.art_id}">{$row.title}</a></li>
           {/if}
-        {/foreach}-->
+        {/foreach}
       </ul>
       <h2>
         <p>栏目推荐</p>

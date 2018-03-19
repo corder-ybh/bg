@@ -122,4 +122,20 @@ class ArticleModel extends Model
         }
         return array_reverse($list, true);
     }
+
+    /**
+     * 获取某个分类下文章点击排行
+     * @param $cate_id
+     * @param $length
+     */
+    public function getSortByHits($cate_id, $length)
+    {}
+
+    /**
+     * 获取某个分类下推荐文章排行
+     * @param $cate_id
+     * @param $length
+     */
+    public function getSortByRecommend($cate_id, $length)
+    {}
 }
