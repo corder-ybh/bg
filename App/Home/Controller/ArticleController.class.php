@@ -33,6 +33,7 @@ class ArticleController extends PlatformController
         //分配页码字符串
         $this->assign('strPage', $strPage);
         //分页到此结束
+        /*
         //获取当前类别的一层子类别的信息
         $category = Factory::M('CategoryModel');
         $subCate = $category->getSubCateByPid($cate_id);
@@ -48,8 +49,34 @@ class ArticleController extends PlatformController
         //获取当前分类下推荐文章
         $sortByRecommend = $article->getSortByRecommend($cate_id, 9);
         $this->assign('sortByRecommend', $sortByRecommend);
-
+        */
+        //调用公共模块
+        $this->PublicAction($cate_id);
         //加载视图文件
         $this->display('index.html');
+    }
+
+    /**
+     * 公共动作
+     * @param $cate_id 分类id
+     */
+    public function PublicAction($cate_id)
+    {
+        //获取当前类别的一层子类别的信息
+        $category = Factory::M('CategoryModel');
+        $subCate = $category->getSubCateByPid($cate_id);
+        //分配变量
+        $this->assign('subCate', $subCate);
+        //获取面包屑导航栏数组信息
+        $article = Factory::M('ArticleModel');
+        $list = $article->getAllCateName($cate_id);
+        //分配变量
+        $this->assign('list', $list);
+        //获取当前分类下点击排行文章
+        $sortByHits = $article->getSortByHits($cate_id, 9);
+        $this->assign('sortByHits', $sortByHits);
+        //获取当前分类下推荐文章
+        $sortByRecommend = $article->getSortByRecommend($cate_id,9);
+        $this->assign('sortByRecommend', $sortByRecommend);
     }
 }

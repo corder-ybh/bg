@@ -10,11 +10,18 @@
       </h2>
       <ul class="ph_n">
         {foreach from=$sortByHits item='row' name='n1'}
-          {if $smarty.foreach.n1.iteration <= 3}      
-        <li><span class="num{$smarty.foreach.n1.iteration}">{$smarty.foreach.n1.iteration}</span><a href="index.php?p=Home&c=Article&a=show&art_id={$row.art_id}">{$row.title}</a></li>
-          {else}
-          <li><span>{$smarty.foreach.n1.iteration}</span><a href="index.php?p=Home&c=Article&a=show&art_id={$row.art_id}">{$row.title}</a></li>
-          {/if}
+            {if $smarty.foreach.n1.iteration <= 3}
+            <li>
+              <span class="num{$smarty.foreach.n1.iteration}">{$smarty.foreach.n1.iteration}</span>
+                <a href="index.php?p=Home&c=Article&a=show&art_id={$row.art_id}">{$row.title}</a>
+            </li>
+            {else}
+            <li><span>{$smarty.foreach.n1.iteration}</span>
+              <a href="index.php?p=Home&c=Article&a=show&art_id={$row.art_id}">{$row.title}</a>
+            </li>
+            {/if}
+        {foreachelse}
+        <span style="color: #FFF;">暂无相关信息</span>
         {/foreach}
       </ul>
       <h2>
@@ -22,7 +29,7 @@
       </h2>
       <ul>
       {foreach from=$sortByRecommend item='row'}
-        <li><a href="index.php?p=Home&c=Article&a=show&art_id={$row.art_id}">{$row.title}</a></li>
+        <li><a href="index.php?p=Home&c=Article&a=show&art_id={$row.art_id}">{$row.title}</a> </li>
       {/foreach}
       </ul>
       <h2>

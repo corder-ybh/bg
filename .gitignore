@@ -29,3 +29,4 @@ user_guide_src/cilexer/pycilexer.egg-info/*
 /tests/tests/
 /tests/results/
 App/Back/View_c/
+App/Home/View_c/

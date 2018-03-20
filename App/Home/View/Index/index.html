@@ -29,11 +29,11 @@
       </h2>
       {foreach from=$recommendArt item='row'}
       <div class="blogs">
-        <h3><a href="/">{$row.title}</a></h3>
+        <h3><a href="index.php?p=Home&c=Article&a=show&art_id={$row.art_id}">{$row.title}</a></h3>
         <figure><img src="/Uploads/thumb/{$row.thumb}"> </figure>
         <ul>
           <p>{$row.content|strip_tags|truncate:100:'...'}</p>
-          <a href="/" target="_blank" class="readmore">阅读全文&gt;&gt;</a>
+          <a href="index.php?p=Home&c=Article&a=show&art_id={$row.art_id}" target="_blank" class="readmore">阅读全文&gt;&gt;</a>
         </ul>
         <p class="autor"><span>作者：{$row.author}</span><span>分类：【<a href="/">{$row.cate_name}</a>】</span>
           <span>浏览 (<a href="/">{$row.hits}</a>) </span></p>
@@ -92,7 +92,7 @@
           </h2>
           <ul>
               {foreach from=$newArt item='row'}
-              <li><a href="/">{$row.title}</a> </li>
+              <li><a href="index.php?p=Home&c=Article&a=show&art_id={$row.art_id}">{$row.title}</a> </li>
               {/foreach}
           </ul>
           <h2>
@@ -100,7 +100,7 @@
           </h2>
           <ul>
               {foreach from=$rmdArtByHits item='row'}
-              <li><a href="/">{$row.title}</a> </li>
+              <li><a href="index.php?p=Home&c=Article&a=show&art_id={$row.art_id}">{$row.title}</a> </li>
               {/foreach}
           </ul>
       </div>

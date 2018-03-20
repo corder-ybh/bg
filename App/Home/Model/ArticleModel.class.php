@@ -129,7 +129,15 @@ class ArticleModel extends Model
      * @param $length
      */
     public function getSortByHits($cate_id, $length)
-    {}
+    {
+        //先获取该分类下所有子分类的id号
+        $ids = $this->getAllSubIds($cate_id);
+        //再拼凑上当前分类的id号
+        $ids .= $cate_id;
+        $sql = "SELECT art_id, title FROM bg_article WHERE is_del = '0' AND cate_id IN ($ids) 
+                    ORDER BY hits DESC LIMIT $length";
+        return $this->dao->fetchAll($sql);
+    }
 
     /**
      * 获取某个分类下推荐文章排行
@@ -137,5 +145,13 @@ class ArticleModel extends Model
      * @param $length
      */
     public function getSortByRecommend($cate_id, $length)
-    {}
+    {
+        //先获取该分类下所有子分类的id号
+        $ids = $this->getAllSubIds($cate_id);
+        //再拼凑上当前分类的id号
+        $ids .= $cate_id;
+        $sql = "SELECT art_id, title FROM bg_article WHERE is_del = '0' AND is_recommend = '1'
+                    AND cate_id IN ($ids) ORDER BY hits DESC LIMIT $length";
+        return $this->dao->fetchAll($sql);
+    }
 }
