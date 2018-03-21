@@ -79,4 +79,32 @@ class ArticleController extends PlatformController
         $sortByRecommend = $article->getSortByRecommend($cate_id,9);
         $this->assign('sortByRecommend', $sortByRecommend);
     }
+
+    /**
+     * 显示文章内容的页动作
+     */
+    public function showAction()
+    {
+        //接受当前文章的id号
+        $art_id = $_GET['art_id'];
+        //调用模型，提取当前文章的信息
+        $article = Factory::M('ArticleModel');
+        //在获取文章信息之前更新浏览次数
+        $article->updateHitsById($art_id);
+        //通过id号获取文章信息
+        $artInfoByid = $article->getArtInfoById($art_id);
+        //分配变量
+        $this->assign('artInfoById', $artInfoByid);
+        //获取当前文章的分类ID号
+        $cate_id = $artInfoByid['cate_id'];
+        //调用公共动作
+        $this->PublicAction($cate_id);
+        //下一步，获取上一篇和下一篇，不能直接id+1，因为文章可能被删除，而应该>$art_id order by art_id limit 1
+        $prev = $article->getPrevArt($art_id, $cate_id);
+        $next = $article->getNextArt($art_id, $cate_id);
+        $this->assign('prev', $prev);
+        $this->assign('next', $next);
+        //输出视图
+        $this->display('show.html');
+    }
 }

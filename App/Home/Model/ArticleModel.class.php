@@ -154,4 +154,54 @@ class ArticleModel extends Model
                     AND cate_id IN ($ids) ORDER BY hits DESC LIMIT $length";
         return $this->dao->fetchAll($sql);
     }
+
+    /**
+     * 根据id获取文章信息
+     * @param $art_id int 文章id
+     * @return mixed
+     */
+    public function getArtInfoById($art_id)
+    {
+        $sql = "SELECT * FROM bg_article WHERE art_id=$art_id";
+        return $this->dao->fetchRow($sql);
+    }
+
+    /**
+     * 更新文章点击数
+     */
+    public function updateHitsById($art_id)
+    {
+        $sql = "UPDATE bg_article set hits=hits+1 WHERE art_id=$art_id";
+        return $this->dao->my_query($sql);
+    }
+
+    /**
+     * 获取该分类的上一篇文章
+     * @param $art_id  int 文章id
+     * @param $cate_id int  分类id
+     */
+    public function getPrevArt($art_id, $cate_id)
+    {
+        //先获取该分类下所有子分类的id号
+        $son_ids = $this->getAllSubIds($cate_id);
+        //再获取该分类下机器所有父类的分类id号
+        $father_ids = $this->getAllCateName($cate_id);
+        $father_ids = implode(',', array_keys($father_ids));
+        $ids = $son_ids . $father_ids;
+        $sql = "SELECT art_id, title FROM bg_article WHERE is_del='0' AND cate_id IN ($ids)
+                    AND art_id < $art_id ORDER BY art_id DESC LIMIT 1";
+        return $this->dao->fetchRow($sql);
+    }
+
+    public function getNextArt($art_id, $cate_id)
+    {
+        //先获取该分类下所有子分类的分类id号
+        $son_ids = $this->getAllSubIds($cate_id);
+        //再获取该分类及其所有父类的分类id号
+        $father_ids = $this->getAllCateName($cate_id);
+        $father_ids = implode(',', array_keys($father_ids));
+        $ids = $son_ids . $father_ids;
+        $sql = "SELECT art_id, title FROM bg_article WHERE is_del='0' AND cate_id IN ($ids)
+                    AND art_id > $art_id ORDER BY art_id DESC LIMIT 1";
+    }
 }
