@@ -74,3 +74,17 @@ CREATE TABLE bg_master (
 );
 INSERT INTO bg_master VALUES
 (NULL,'站长','执剑人','星云|A区','123456789','2270933604@qq.com');
+
+CREATE TABLE bg_singlePage(
+  page_id TINYINT UNSIGNED PRIMARY KEY auto_increment,
+  title VARCHAR(50) NOT NULL,
+  content text
+);
+
+CREATE TABLE bg_user(
+  user_id SMALLINT UNSIGNED PRIMARY KEY auto_increment,
+  user_name VARCHAR(20) NOT NULL UNIQUE KEY,
+  user_pass CHAR(32) NOT NULL,
+  user_image VARCHAR(100) NOT NULL DEFAULT 'default.jpg',
+  user_time INT UNSIGNED NOT NULL -- 注册时间
+);

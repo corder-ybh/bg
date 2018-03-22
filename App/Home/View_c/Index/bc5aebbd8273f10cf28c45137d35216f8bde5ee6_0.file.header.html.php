@@ -1,17 +1,17 @@
 <?php
-/* Smarty version 3.1.29, created on 2018-03-15 16:39:45
+/* Smarty version 3.1.29, created on 2018-03-22 18:26:17
   from "/var/www/http/blog.com/App/Home/View/Public/header.html" */
 
 if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl, array (
   'has_nocache_code' => false,
   'version' => '3.1.29',
-  'unifunc' => 'content_5aaa315170add4_99846987',
+  'unifunc' => 'content_5ab384c9e49a27_41373715',
   'file_dependency' => 
   array (
     'bc5aebbd8273f10cf28c45137d35216f8bde5ee6' => 
     array (
       0 => '/var/www/http/blog.com/App/Home/View/Public/header.html',
-      1 => 1521103056,
+      1 => 1521710231,
       2 => 'file',
     ),
   ),
@@ -19,7 +19,7 @@ if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl,
   array (
   ),
 ),false)) {
-function content_5aaa315170add4_99846987 ($_smarty_tpl) {
+function content_5ab384c9e49a27_41373715 ($_smarty_tpl) {
 ?>
   <header>
     <h1>蜗牛的家</h1>
@@ -41,13 +41,16 @@ $__foreach_row_0_saved_local_item = $_smarty_tpl->tpl_vars['row'];
         <a href="index.php?p=Home&c=Article&a=index&cate_id=<?php echo $_smarty_tpl->tpl_vars['row']->value['cate_id'];?>
 "><?php echo $_smarty_tpl->tpl_vars['row']->value['cate_name'];?>
 </a>
-        <?php
+    <?php
 $_smarty_tpl->tpl_vars['row'] = $__foreach_row_0_saved_local_item;
 }
 if ($__foreach_row_0_saved_item) {
 $_smarty_tpl->tpl_vars['row'] = $__foreach_row_0_saved_item;
 }
 ?>
-    <a href="about.html">关于我</a></nav>
+    <a href="index.php?p=Home&c=SinglePage&a=index&page_id=1">关于我</a>
+    <a style="font-size: 12px;margin-left: 80px;padding: 0;" href="index.php?p=Home&c=User&a=login">登录|</a>
+    <a style="font-size:12px;padding: 0;" href="index.php?p=Home&c=User&a=register">注册</a>
+    </nav>
   </header><?php }
 }

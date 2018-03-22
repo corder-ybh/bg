@@ -104,6 +104,9 @@ class ArticleController extends PlatformController
         $next = $article->getNextArt($art_id, $cate_id);
         $this->assign('prev', $prev);
         $this->assign('next', $next);
+        //标题
+        $this->assign('title', $artInfoByid['title']);
+
         //输出视图
         $this->display('show.html');
     }

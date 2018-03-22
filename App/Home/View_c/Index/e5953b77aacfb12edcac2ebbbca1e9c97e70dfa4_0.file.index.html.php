@@ -1,26 +1,27 @@
 <?php
-/* Smarty version 3.1.29, created on 2018-03-16 17:32:19
+/* Smarty version 3.1.29, created on 2018-03-22 16:39:23
   from "/var/www/http/blog.com/App/Home/View/Index/index.html" */
 
 if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl, array (
   'has_nocache_code' => false,
   'version' => '3.1.29',
-  'unifunc' => 'content_5aab8f2356cf22_24491445',
+  'unifunc' => 'content_5ab36bbb911722_11121167',
   'file_dependency' => 
   array (
     'e5953b77aacfb12edcac2ebbbca1e9c97e70dfa4' => 
     array (
       0 => '/var/www/http/blog.com/App/Home/View/Index/index.html',
-      1 => 1521192730,
+      1 => 1521707840,
       2 => 'file',
     ),
   ),
   'includes' => 
   array (
     'file:../Public/header.html' => 1,
+    'file:../Public/copyright.html' => 1,
   ),
 ),false)) {
-function content_5aab8f2356cf22_24491445 ($_smarty_tpl) {
+function content_5ab36bbb911722_11121167 ($_smarty_tpl) {
 if (!is_callable('smarty_modifier_truncate')) require_once '/var/www/http/blog.com/Vendor/Smarty/plugins/modifier.truncate.php';
 if (!is_callable('smarty_modifier_date_format')) require_once '/var/www/http/blog.com/Vendor/Smarty/plugins/modifier.date_format.php';
 ?>
@@ -74,14 +75,16 @@ $_smarty_tpl->tpl_vars['row']->_loop = true;
 $__foreach_row_0_saved_local_item = $_smarty_tpl->tpl_vars['row'];
 ?>
       <div class="blogs">
-        <h3><a href="/"><?php echo $_smarty_tpl->tpl_vars['row']->value['title'];?>
+        <h3><a href="index.php?p=Home&c=Article&a=show&art_id=<?php echo $_smarty_tpl->tpl_vars['row']->value['art_id'];?>
+"><?php echo $_smarty_tpl->tpl_vars['row']->value['title'];?>
 </a></h3>
         <figure><img src="/Uploads/thumb/<?php echo $_smarty_tpl->tpl_vars['row']->value['thumb'];?>
 "> </figure>
         <ul>
           <p><?php echo smarty_modifier_truncate(preg_replace('!<[^>]*?>!', ' ', $_smarty_tpl->tpl_vars['row']->value['content']),100,'...');?>
 </p>
-          <a href="/" target="_blank" class="readmore">阅读全文&gt;&gt;</a>
+          <a href="index.php?p=Home&c=Article&a=show&art_id=<?php echo $_smarty_tpl->tpl_vars['row']->value['art_id'];?>
+" target="_blank" class="readmore">阅读全文&gt;&gt;</a>
         </ul>
         <p class="autor"><span>作者：<?php echo $_smarty_tpl->tpl_vars['row']->value['author'];?>
 </span><span>分类：【<a href="/"><?php echo $_smarty_tpl->tpl_vars['row']->value['cate_name'];?>
@@ -108,13 +111,13 @@ $_smarty_tpl->tpl_vars['row'] = $__foreach_row_0_saved_item;
     </div>
   </article>
   <aside>
-    <div class="avatar"><a href="about.html"><span>关于zhouyang</span></a></div>
+    <div class="avatar"><a href="index.php?p=Home&c=SinglePage&a=index&page_id=1"><span>关于zhouyang</span></a></div>
     <div class="topspaceinfo">
       <h1>执子之手，与子偕老</h1>
       <p>于千万人之中，我遇见了我所遇见的人....</p>
     </div>
     <div class="about_c">
-      <p>网名：<?php echo $_smarty_tpl->tpl_vars['masterInfo']->value['nickname'];?>
+      <p>站长：<?php echo $_smarty_tpl->tpl_vars['masterInfo']->value['nickname'];?>
 </p>
       <p>职业：<?php echo $_smarty_tpl->tpl_vars['masterInfo']->value['job'];?>
  </p>
@@ -125,8 +128,110 @@ $_smarty_tpl->tpl_vars['row'] = $__foreach_row_0_saved_item;
       <p>邮箱：<?php echo $_smarty_tpl->tpl_vars['masterInfo']->value['email'];?>
 </p>
     </div>
-    
+    <div class="bdsharebuttonbox">
+      <a href="#" class="bds_more" data-cmd="more"></a>
+        <a href="#" class="bds_qzone" data-cmd="qzone"></a>
+        <a href="#" class="bds_tsina" data-cmd="tsina"></a>
+        <a href="#" class="bds_tqq" data-cmd="tqq"></a>
+        <a href="#" class="bds_renren" data-cmd="renren"></a>
+        <a href="#" class="bds_weixin" data-cmd="weixin"></a>
+    </div>
+      
+      <?php echo '<script'; ?>
+>
+          window._bd_share_config =
+              {
+                  "common": {"bdSnsKey": {}, "bdText": "", "bdMini": "2", "bdPic": "", "bdStyle": "0", "bdSize": "16"},
+                  "share": {},
+                  "image": {
+                      "viewList": ["qzone", "tsina", "tqq", "renren", "weixin"],
+                      "viewText": "分享到：",
+                      "viewSize": "16"
+                  },
+                  "selectShare": {
+                      "bdContainerClass": null,
+                      "bdSelectMiniList": ["qzone", "tsina", "tqq", "renren", "weixin"]
+                  }
+              };
+          with (document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];
+      <?php echo '</script'; ?>
+>
+      
+      <div class="tj_news">
+          <h2>
+              <p class="tj_t1">最新文章</p>
+          </h2>
+          <ul>
+              <?php
+$_from = $_smarty_tpl->tpl_vars['newArt']->value;
+if (!is_array($_from) && !is_object($_from)) {
+settype($_from, 'array');
+}
+$__foreach_row_1_saved_item = isset($_smarty_tpl->tpl_vars['row']) ? $_smarty_tpl->tpl_vars['row'] : false;
+$_smarty_tpl->tpl_vars['row'] = new Smarty_Variable();
+$_smarty_tpl->tpl_vars['row']->_loop = false;
+foreach ($_from as $_smarty_tpl->tpl_vars['row']->value) {
+$_smarty_tpl->tpl_vars['row']->_loop = true;
+$__foreach_row_1_saved_local_item = $_smarty_tpl->tpl_vars['row'];
+?>
+              <li><a href="index.php?p=Home&c=Article&a=show&art_id=<?php echo $_smarty_tpl->tpl_vars['row']->value['art_id'];?>
+"><?php echo $_smarty_tpl->tpl_vars['row']->value['title'];?>
+</a> </li>
+              <?php
+$_smarty_tpl->tpl_vars['row'] = $__foreach_row_1_saved_local_item;
+}
+if ($__foreach_row_1_saved_item) {
+$_smarty_tpl->tpl_vars['row'] = $__foreach_row_1_saved_item;
+}
+?>
+          </ul>
+          <h2>
+              <p class="tj_t2">推荐文章</p>
+          </h2>
+          <ul>
+              <?php
+$_from = $_smarty_tpl->tpl_vars['rmdArtByHits']->value;
+if (!is_array($_from) && !is_object($_from)) {
+settype($_from, 'array');
+}
+$__foreach_row_2_saved_item = isset($_smarty_tpl->tpl_vars['row']) ? $_smarty_tpl->tpl_vars['row'] : false;
+$_smarty_tpl->tpl_vars['row'] = new Smarty_Variable();
+$_smarty_tpl->tpl_vars['row']->_loop = false;
+foreach ($_from as $_smarty_tpl->tpl_vars['row']->value) {
+$_smarty_tpl->tpl_vars['row']->_loop = true;
+$__foreach_row_2_saved_local_item = $_smarty_tpl->tpl_vars['row'];
+?>
+              <li><a href="index.php?p=Home&c=Article&a=show&art_id=<?php echo $_smarty_tpl->tpl_vars['row']->value['art_id'];?>
+"><?php echo $_smarty_tpl->tpl_vars['row']->value['title'];?>
+</a> </li>
+              <?php
+$_smarty_tpl->tpl_vars['row'] = $__foreach_row_2_saved_local_item;
+}
+if ($__foreach_row_2_saved_item) {
+$_smarty_tpl->tpl_vars['row'] = $__foreach_row_2_saved_item;
+}
+?>
+          </ul>
+      </div>
+      <div class="links">
+          <h2>
+              <p>友情链接</p>
+          </h2>
+          <ul>
+              <li><a ha></li>ref="/">zhouyang个人博客</
+          <li><a href="http://bbs.itcast.cn">传智播客论坛</a></li>
+          </ul>
+      </div>
+      <?php $_smarty_tpl->smarty->ext->_subtemplate->render($_smarty_tpl, "file:../Public/copyright.html", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
+?>
+
   </aside>
+    <?php echo '<script'; ?>
+ src="<?php echo @constant('JS_DIR');?>
+/silder.js"><?php echo '</script'; ?>
+>
+    <div class="clear"></div>
+    <!-- 清除浮动 -->
 </div>
  </body>
  </html>

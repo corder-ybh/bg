@@ -15,6 +15,8 @@ class PlatformController extends Controller
     {
         parent::__construct();
         $this->initFirstCateInfo();
+        //初始化时完成关键字的设置
+        $this->initVars();
     }
 
     /**
@@ -28,5 +30,20 @@ class PlatformController extends Controller
         $firstCate = $category->getFirstCate();
         //分配变量
         $this->assign('firstCate', $firstCate);
+    }
+
+    /**
+     * 分配meta标签公共数据
+     */
+    public function initVars()
+    {
+        $title = "bhy个人博客";
+        $keywords = "个人博客,响应式";
+        $description = "个人博客,技术博客";
+
+        //分配变量
+        $this->assign('title', $title);
+        $this->assign('keywords', $keywords);
+        $this->assign('description', $description);
     }
 }
