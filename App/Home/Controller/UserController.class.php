@@ -31,4 +31,14 @@ class UserController extends PlatformController
         //显示输出视图文件
         $this->display('register.html');
     }
+
+    /**
+     * 处理会员注册动作
+     */
+    public function dealRegisterAction()
+    {
+        //接收数据
+        $userInfo = array();
+        $user_name = $this->escapeData($_POST['user_name']);
+    }
 }

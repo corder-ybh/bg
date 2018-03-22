@@ -1,17 +1,17 @@
 <?php
-/* Smarty version 3.1.29, created on 2018-03-17 12:35:37
+/* Smarty version 3.1.29, created on 2018-03-22 21:01:36
   from "D:\amp\Apache24\htdocs\blog.com\App\Home\View\Index\index.html" */
 
 if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl, array (
   'has_nocache_code' => false,
   'version' => '3.1.29',
-  'unifunc' => 'content_5aac9b19a09b68_42152002',
+  'unifunc' => 'content_5ab3a930281006_82810840',
   'file_dependency' => 
   array (
     '9aca25b258702dbbe4328e6a0c0d9b173ff7a45c' => 
     array (
       0 => 'D:\\amp\\Apache24\\htdocs\\blog.com\\App\\Home\\View\\Index\\index.html',
-      1 => 1521261148,
+      1 => 1521723381,
       2 => 'file',
     ),
   ),
@@ -21,7 +21,7 @@ if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl,
     'file:../Public/copyright.html' => 1,
   ),
 ),false)) {
-function content_5aac9b19a09b68_42152002 ($_smarty_tpl) {
+function content_5ab3a930281006_82810840 ($_smarty_tpl) {
 if (!is_callable('smarty_modifier_truncate')) require_once 'D:/amp/Apache24/htdocs/blog.com/Vendor/Smarty/plugins\\modifier.truncate.php';
 if (!is_callable('smarty_modifier_date_format')) require_once 'D:/amp/Apache24/htdocs/blog.com/Vendor/Smarty/plugins\\modifier.date_format.php';
 ?>
@@ -75,14 +75,16 @@ $_smarty_tpl->tpl_vars['row']->_loop = true;
 $__foreach_row_0_saved_local_item = $_smarty_tpl->tpl_vars['row'];
 ?>
       <div class="blogs">
-        <h3><a href="/"><?php echo $_smarty_tpl->tpl_vars['row']->value['title'];?>
+        <h3><a href="index.php?p=Home&c=Article&a=show&art_id=<?php echo $_smarty_tpl->tpl_vars['row']->value['art_id'];?>
+"><?php echo $_smarty_tpl->tpl_vars['row']->value['title'];?>
 </a></h3>
         <figure><img src="/Uploads/thumb/<?php echo $_smarty_tpl->tpl_vars['row']->value['thumb'];?>
 "> </figure>
         <ul>
           <p><?php echo smarty_modifier_truncate(preg_replace('!<[^>]*?>!', ' ', $_smarty_tpl->tpl_vars['row']->value['content']),100,'...');?>
 </p>
-          <a href="/" target="_blank" class="readmore">阅读全文&gt;&gt;</a>
+          <a href="index.php?p=Home&c=Article&a=show&art_id=<?php echo $_smarty_tpl->tpl_vars['row']->value['art_id'];?>
+" target="_blank" class="readmore">阅读全文&gt;&gt;</a>
         </ul>
         <p class="autor"><span>作者：<?php echo $_smarty_tpl->tpl_vars['row']->value['author'];?>
 </span><span>分类：【<a href="/"><?php echo $_smarty_tpl->tpl_vars['row']->value['cate_name'];?>
@@ -109,7 +111,7 @@ $_smarty_tpl->tpl_vars['row'] = $__foreach_row_0_saved_item;
     </div>
   </article>
   <aside>
-    <div class="avatar"><a href="about.html"><span>关于zhouyang</span></a></div>
+    <div class="avatar"><a href="index.php?p=Home&c=SinglePage&a=index&page_id=1"><span>关于zhouyang</span></a></div>
     <div class="topspaceinfo">
       <h1>执子之手，与子偕老</h1>
       <p>于千万人之中，我遇见了我所遇见的人....</p>
@@ -172,7 +174,8 @@ foreach ($_from as $_smarty_tpl->tpl_vars['row']->value) {
 $_smarty_tpl->tpl_vars['row']->_loop = true;
 $__foreach_row_1_saved_local_item = $_smarty_tpl->tpl_vars['row'];
 ?>
-              <li><a href="/"><?php echo $_smarty_tpl->tpl_vars['row']->value['title'];?>
+              <li><a href="index.php?p=Home&c=Article&a=show&art_id=<?php echo $_smarty_tpl->tpl_vars['row']->value['art_id'];?>
+"><?php echo $_smarty_tpl->tpl_vars['row']->value['title'];?>
 </a> </li>
               <?php
 $_smarty_tpl->tpl_vars['row'] = $__foreach_row_1_saved_local_item;
@@ -198,7 +201,8 @@ foreach ($_from as $_smarty_tpl->tpl_vars['row']->value) {
 $_smarty_tpl->tpl_vars['row']->_loop = true;
 $__foreach_row_2_saved_local_item = $_smarty_tpl->tpl_vars['row'];
 ?>
-              <li><a href="/"><?php echo $_smarty_tpl->tpl_vars['row']->value['title'];?>
+              <li><a href="index.php?p=Home&c=Article&a=show&art_id=<?php echo $_smarty_tpl->tpl_vars['row']->value['art_id'];?>
+"><?php echo $_smarty_tpl->tpl_vars['row']->value['title'];?>
 </a> </li>
               <?php
 $_smarty_tpl->tpl_vars['row'] = $__foreach_row_2_saved_local_item;
