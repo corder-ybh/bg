@@ -85,7 +85,7 @@
         <span>评论（{$artInfoById.reply_nums}）</span>
       </p>
       <ul class="infos">
-        {$artInfoById.content}s
+        {$artInfoById.content}
       </ul>
       <div class="nextinfo">
         <p>上一篇：<a href="index.php?p=Home&c=Article&a=show&art_id={$prev.art_id|default:$smarty.get.art_id}">{$prev.title|default:'已经是第一篇了,没有了!'}</a></p>

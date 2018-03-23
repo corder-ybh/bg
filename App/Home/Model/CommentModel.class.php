@@ -15,7 +15,7 @@ class CommentModel extends Model
     public function insertComment($cmtInfo)
     {
         extract($cmtInfo);
-        $sql = "INSERT INTO bg_comment VALUE (NULL, $art_id, '$cmt_user', '$cmt_content', $cmt_time)";
+        $sql = "INSERT INTO bg_comment VALUE (NULL, $art_id, '$cmt_user', '$cmt_content', $cmt_time, DEFAULT )";
         return $this->dao->my_query($sql);
     }
 
@@ -25,7 +25,7 @@ class CommentModel extends Model
      */
     public function getRowCountById($art_id)
     {
-        $sql = "SELECT COUNT(*) FROM bg_comment WHERE art_id=$art_id";
+        $sql = "SELECT COUNT(*) FROM bg_comment WHERE art_id=$art_id AND is_show = '1'";
         return $this->dao->fetchColumn($sql);
     }
 
@@ -39,7 +39,7 @@ class CommentModel extends Model
         $pageNum = isset($_GET['pageNum']) ? $_GET['pageNum'] : 1;
         $offset = ($pageNum - 1) * $rowsPerPage;
         $sql = "SELECT c.*, u.user_image FROM bg_comment AS c LEFT JOIN bg_user AS u ON c.cmt_user = u.user_name 
-                    WHERE c.art_id = $art_id ORDER BY c.cmt_time ASC LIMIT $offset, $rowsPerPage";
+                    WHERE c.art_id = $art_id AND c.is_show='1' ORDER BY c.cmt_time ASC LIMIT $offset, $rowsPerPage";
         return $this->dao->fetchAll($sql);
     }
 }

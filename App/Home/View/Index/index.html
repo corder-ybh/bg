@@ -2,9 +2,9 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>圣骑士个人博客</title>
-<meta name="keywords" content="个人博客,圣骑士个人博客,周洋老师个人博客,响应式" />
-<meta name="description" content="个人博客,圣骑士个人博客,周洋老师个人博客,响应式，神秘、俏皮。" />
+<title>呦桃博客</title>
+<meta name="keywords" content="博客,呦桃博客,PHP开发,linux,技术积累,响应式," />
+<meta name="description" content="博客,呦桃博客,PHP开发,linux,技术记录与交流" />
 <link href="{$smarty.const.CSS_DIR}/base.css" rel="stylesheet">
 <link href="{$smarty.const.CSS_DIR}/index.css" rel="stylesheet">
 <link href="{$smarty.const.CSS_DIR}/media.css" rel="stylesheet">
@@ -19,8 +19,8 @@
   <article>
     <div class="banner">
       <ul class="texts">
-        <p>The best life is use of willing attitude, a happy-go-lucky life. </p>
-        <p>最好的生活是用心甘情愿的态度，过随遇而安的生活。</p>
+        <p>Hope for the best, but prepare for the worst. </p>
+        <p>抱最好的愿望，做最坏的打算。</p>
       </ul>
     </div>
     <div class="bloglist">
@@ -51,10 +51,10 @@
     </div>
   </article>
   <aside>
-    <div class="avatar"><a href="index.php?p=Home&c=SinglePage&a=index&page_id=1"><span>关于zhouyang</span></a></div>
+    <div class="avatar"><a href="index.php?p=Home&c=SinglePage&a=index&page_id=1"><span>关注我们</span></a></div>
     <div class="topspaceinfo">
-      <h1>执子之手，与子偕老</h1>
-      <p>于千万人之中，我遇见了我所遇见的人....</p>
+      <h1>十年磨一剑，霜刃未曾试</h1>
+      <p>九万里风鹏正举，风休住，蓬舟吹取三山去！</p>
     </div>
     <div class="about_c">
       <p>站长：{$masterInfo.nickname}</p>
@@ -63,32 +63,27 @@
       <p>电话：{$masterInfo.tel}</p>
       <p>邮箱：{$masterInfo.email}</p>
     </div>
-    <div class="bdsharebuttonbox">
-      <a href="#" class="bds_more" data-cmd="more"></a>
-        <a href="#" class="bds_qzone" data-cmd="qzone"></a>
-        <a href="#" class="bds_tsina" data-cmd="tsina"></a>
-        <a href="#" class="bds_tqq" data-cmd="tqq"></a>
-        <a href="#" class="bds_renren" data-cmd="renren"></a>
-        <a href="#" class="bds_weixin" data-cmd="weixin"></a>
-    </div>
       {literal}
-      <script>
-          window._bd_share_config =
+      <div class="bdsharebuttonbox">
+          <a href="#" class="bds_more" data-cmd="more"></a>
+          <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+          <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+          <a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a>
+          <a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a>
+          <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+      </div>
+      <script>window._bd_share_config={
+          "common":{
+              "bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"32"
+          },
+          "share":{},
+          "image":{
+              "viewList":["qzone","tsina","tqq","renren","weixin"],"viewText":"分享到：","viewSize":"32"
+          },"selectShare":
               {
-                  "common": {"bdSnsKey": {}, "bdText": "", "bdMini": "2", "bdPic": "", "bdStyle": "0", "bdSize": "16"},
-                  "share": {},
-                  "image": {
-                      "viewList": ["qzone", "tsina", "tqq", "renren", "weixin"],
-                      "viewText": "分享到：",
-                      "viewSize": "16"
-                  },
-                  "selectShare": {
-                      "bdContainerClass": null,
-                      "bdSelectMiniList": ["qzone", "tsina", "tqq", "renren", "weixin"]
-                  }
-              };
-          with (document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];
-      </script>
+                  "bdContainerClass":null,"bdSelectMiniList":["qzone","tsina","tqq","renren","weixin"]
+              }
+      };with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
       {/literal}
       <div class="tj_news">
           <h2>
@@ -108,15 +103,15 @@
               {/foreach}
           </ul>
       </div>
-      <div class="links">
+      <!--div class="links">
           <h2>
               <p>友情链接</p>
           </h2>
           <ul>
-              <li><a ha></li>ref="/">zhouyang个人博客</
-          <li><a href="http://bbs.itcast.cn">传智播客论坛</a></li>
+              <li><a ></li>ref="/">zhouyang个人博客</
+          <li><a href="">论坛</a></li>
           </ul>
-      </div>
+      </div-->
       {include file='../Public/copyright.html'}
   </aside>
     <script src="{$smarty.const.JS_DIR}/silder.js"></script>

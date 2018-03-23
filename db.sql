@@ -90,3 +90,5 @@ CREATE TABLE bg_user(
 );
 
 ALTER TABLE bg_article ADD reply_nums INT UNSIGNED NOT NULL DEFAULT 0 AFTER hits;
+
+ALTER TABLE bg_comment ADD is_show INT UNSIGNED NOT NULL DEFAULT 0 ;
