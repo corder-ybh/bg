@@ -82,7 +82,7 @@
         <span class="d_time">发布时间：{$artInfoById.addtime|date_format:"%Y-%m-%d"}</span>
         <span>作者：{$artInfoById.author}</span>
         <span>浏览（{$artInfoById.hits}）</span>
-        <span>评论（14）</span>
+        <span>评论（{$artInfoById.reply_nums}）</span>
       </p>
       <ul class="infos">
         {$artInfoById.content}s
@@ -94,40 +94,32 @@
       <div style="clear:both; height:10px;"></div>
       <div class="otherlink">
         <h2>评论列表</h2>
+        {foreach from=$cmtInfos item='row'}
         <dl>
           <dt>
-            <img width='50' height='50' src='{$smarty.const.IMAGES_DIR}//s6.jpg'>
+            <img width='50' height='50' src='/Uploads/user/{$row.user_image}'>
           </dt>
           <dd>
-            <h3>
-        剑圣
-            </h3>
-            <p class='msg'>我来了</p>
-            <p class='addtime'>发布时间：2016-02-28 15:23:56</p>
+            <h3>{$row.cmt_user}</h3>
+            <p class='msg'>{$row.cmt_content}</p>
+            <p class='addtime'>发布时间：{$row.cmt_time|date_format:"%Y-%m-%d %T"}</p>
           </dd>
         </dl>
-            <dl>
-          <dt>
-            <img width='50' height='50' src='{$smarty.const.IMAGES_DIR}//s7.jpg'>
-          </dt>
-          <dd>
-            <h3>
-        火影
-            </h3>
-            <p class='msg'>我也来了</p>
-            <p class='addtime'>发布时间：2016-03-28 19:28:56</p>
-          </dd>
-        </dl>
+        {foreachelse}
+        <p>暂无评论，快来抢沙发吧！</p>
+        {/foreach}
       </div>
     </div>
     <div style="clear:both; height:10px;"></div>
       <div class="otherlink">
         <h2>发布评论</h2>
       </div>
-      <form action="" method="post">
-      <textarea placeholder="说点什么吧…" title="Ctrl+Enter快捷提交" name="content"></textarea>
-    <button type="submit" class="ds-post-button">发布</button></form>
-   <div class="page"><a href="/">1</a><a href="/">2</a><a href="/">3</a><a href="/">4</a><a href="/">5</a></div>
+      <form action="index.php?p=Home&c=Article&a=comment" method="post">
+        <textarea placeholder="说点什么吧…" title="Ctrl+Enter快捷提交" name="content"></textarea>
+        <button type="submit" class="ds-post-button">发布</button>
+        <input type="hidden" name="art_id" value="{$smarty.get.art_id}">
+      </form>
+   <div class="page">{$strPage}</div>
   </article>
   {include file='../Public/aside.html'}
   <script src="js/silder.js"></script>

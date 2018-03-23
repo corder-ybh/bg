@@ -106,8 +106,57 @@ class ArticleController extends PlatformController
         $this->assign('next', $next);
         //标题
         $this->assign('title', $artInfoByid['title']);
+        //下一步，处理文章的评论相关
+        //分页
+        $rowsPerPage = 5;
+        $maxNum = $GLOBALS['conf']['Page']['MaxNum'];
+        $url = "index.php?p=Home&c=Article&a=show&art_id=$art_id&";
+        $comment = Factory::M('CommentModel');
+        $rowCount = $comment->getRowCountById($art_id);
+        //实例化分类页
+        $page = new Page($rowsPerPage, $rowCount, $maxNum, $url);
+        $strPage = $page->getStrPage();
+        //分配页码字符串
+        $this->assign('strPage', $strPage);
+        //提取当前页所有评论
+        $cmtInfo = $comment->getCmtInfosById($art_id, $rowsPerPage);
+        $this->assign('cmtInfos', $cmtInfo);
 
         //输出视图
         $this->display('show.html');
+    }
+
+    /**
+     * 处理评论动作
+     */
+    public function commentAction()
+    {
+        //先判断用户是否登录
+        if (!isset($_SESSION['user_info'])) {
+            $this->jump('index.php?p=Home&c=User&a=login', '请先登录！');
+        }
+        //接收数据
+        $cmtInfo = array();
+        $cmtInfo['art_id'] = $_POST['art_id'];
+        $cmt_content = $this->escapeData($_POST['content']);
+        if (empty($cmt_content)) {
+            $this->jump("index.php?p=Home&c=Article&a=show&art_id={$cmtInfo['art_id']}",":( 内容不能为空！");
+        }
+        $cmtInfo['cmt_content'] = $cmt_content;
+        $cmtInfo['cmt_time'] = time();
+        $cmtInfo['cmt_user'] = $_SESSION['user_info']['user_name'];
+        //调用模型，入库
+        $comment = Factory::M('CommentModel');
+        $result = $comment->insertComment($cmtInfo);
+        if ($result) {
+            //插入成功，给当前文章的评论数加一
+            $article = Factory::M('ArticleModel');
+            $article->updateReplyNumsById($cmtInfo['art_id']);
+            //跳转到该文章的内容页
+            $this->jump("index.php?p=Home&c=Article&a=show&art_id={$cmtInfo['art_id']}");
+        } else {
+            //插入失败
+            $this->jump("index.php?p=Home&c=Article&a=show&art_id={$cmtInfo['art_id']}","评论失败，请联系管理员");
+        }
     }
 }

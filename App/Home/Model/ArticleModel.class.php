@@ -193,6 +193,11 @@ class ArticleModel extends Model
         return $this->dao->fetchRow($sql);
     }
 
+    /**
+     * 获取下一篇
+     * @param $art_id
+     * @param $cate_id
+     */
     public function getNextArt($art_id, $cate_id)
     {
         //先获取该分类下所有子分类的分类id号
@@ -203,5 +208,15 @@ class ArticleModel extends Model
         $ids = $son_ids . $father_ids;
         $sql = "SELECT art_id, title FROM bg_article WHERE is_del='0' AND cate_id IN ($ids)
                     AND art_id > $art_id ORDER BY art_id DESC LIMIT 1";
+    }
+
+    /**
+     * 给当前文章的评论数加一
+     * @param $art_id
+     */
+    public function updateReplyNumsById($art_id)
+    {
+        $sql = "UPDATE bg_article SET reply_nums = reply_nums + 1 WHERE art_id = $art_id";
+        return $this->dao->my_query($sql);
     }
 }

@@ -20,7 +20,7 @@ class ArticleModel extends Model
         $addTime = time();
         //入库
         $sql = "insert into bg_article 
-           VALUES (null,$cate_id,'$title','$thumb','$art_desc','$content','$author',DEFAULT ,'$addTime', DEFAULT ,DEFAULT )";
+           VALUES (null,$cate_id,'$title','$thumb','$art_desc','$content','$author',DEFAULT, DEFAULT, '$addTime', DEFAULT ,DEFAULT )";
         return $this->dao->my_query($sql);
     }
 

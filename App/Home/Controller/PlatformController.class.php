@@ -17,6 +17,12 @@ class PlatformController extends Controller
         $this->initFirstCateInfo();
         //初始化时完成关键字的设置
         $this->initVars();
+        //控制器初始化时应该开启session
+        $this->initSession();
+    }
+
+    public function initSession(){
+        @session_start();
     }
 
     /**

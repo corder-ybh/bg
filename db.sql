@@ -88,3 +88,5 @@ CREATE TABLE bg_user(
   user_image VARCHAR(100) NOT NULL DEFAULT 'default.jpg',
   user_time INT UNSIGNED NOT NULL -- 注册时间
 );
+
+ALTER TABLE bg_article ADD reply_nums INT UNSIGNED NOT NULL DEFAULT 0 AFTER hits;
