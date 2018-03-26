@@ -33,23 +33,12 @@ class ArticleController extends PlatformController
         //分配页码字符串
         $this->assign('strPage', $strPage);
         //分页到此结束
-        /*
-        //获取当前类别的一层子类别的信息
-        $category = Factory::M('CategoryModel');
-        $subCate = $category->getSubCateByPid($cate_id);
-        //分配变量
-        $this->assign('subCate', $subCate);
-        //获取面包屑导航数组信息
-        $list = $article->getAllCateName($cate_id);
-        //分配变量
-        $this->assign('list', $list);
-        //获取当前分类下点击排行文章
-        $sortByHits = $article->getSortByHits($cate_id, 9);
-        $this->assign('sortByHits', $sortByHits);
-        //获取当前分类下推荐文章
-        $sortByRecommend = $article->getSortByRecommend($cate_id, 9);
-        $this->assign('sortByRecommend', $sortByRecommend);
-        */
+
+        //获取最新评论
+        $comment = Factory::M('CommentModel');
+        $latestCmt = $comment->getLatestCmt($GLOBALS['conf']['Home']['latestCmtNum']);
+        $this->assign('latestCmt',$latestCmt);
+
         //调用公共模块
         $this->PublicAction($cate_id);
         //加载视图文件
@@ -95,8 +84,16 @@ class ArticleController extends PlatformController
         $artInfoByid = $article->getArtInfoById($art_id);
         //分配变量
         $this->assign('artInfoById', $artInfoByid);
+        $this->assign('keywords',$artInfoByid['keywords']);
+        $this->assign('description',$artInfoByid['art_desc']);
         //获取当前文章的分类ID号
         $cate_id = $artInfoByid['cate_id'];
+
+        //获取最新评论
+        $comment = Factory::M('CommentModel');
+        $latestCmt = $comment->getLatestCmt($GLOBALS['conf']['Home']['latestCmtNum']);
+        $this->assign('latestCmt',$latestCmt);
+
         //调用公共动作
         $this->PublicAction($cate_id);
         //下一步，获取上一篇和下一篇，不能直接id+1，因为文章可能被删除，而应该>$art_id order by art_id limit 1
@@ -144,7 +141,7 @@ class ArticleController extends PlatformController
         }
         $cmtInfo['cmt_content'] = $cmt_content;
         $cmtInfo['cmt_time'] = time();
-        $cmtInfo['cmt_user'] = $_SESSION['user_info']['user_name'];
+        $cmtInfo['cmt_user'] = $_SESSION['user_info']['user_id'];
         //调用模型，入库
         $comment = Factory::M('CommentModel');
         $result = $comment->insertComment($cmtInfo);

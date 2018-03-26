@@ -47,10 +47,10 @@
                 <td>
                     {if $row.is_recommend == '1'}
                     <a class="button border-yellow button-little"
-                       href="index.php?p=Back&c=Article&a=ifRecommend&art_id={$row.art_id}&is_recommend={$row.is_recommend}&pageNum={$smart.get.pageNum|default:1}">已推荐</a>
+                       href="index.php?p=Back&c=Article&a=ifRecommend&art_id={$row.art_id}&is_recommend={$row.is_recommend}&pageNum={$smarty.get.pageNum}|default:1}">已推荐</a>
                     {else}
                     <a class="button border-blue button-little"
-                       href="index.php?p=Back&c=Article&a=ifRecommend&art_id={$row.art_id}&is_recommend={$row.is_recommend}&pageNum={$smart.get.pageNum|default:1}">未推荐</a>
+                       href="index.php?p=Back&c=Article&a=ifRecommend&art_id={$row.art_id}&is_recommend={$row.is_recommend}&pageNum={$smarty.get.pageNum|default:1}">未推荐</a>
                     {/if}
                 </td>
                 <td>

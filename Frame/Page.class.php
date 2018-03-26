@@ -34,6 +34,7 @@ class Page
         $pages = ceil($this->rowCount / $this->rowPerPage) !=0 ? ceil($this->rowCount / $this->rowPerPage): 1;
         //确定当前选中的页码数
         $pageNum = isset($_GET['pageNum']) ? $_GET['pageNum'] : 1;
+        $pageNum = $pageNum > 0 ?$pageNum : 1;
         //定义页码字符串
         $strPage = '';
         //拼凑出 "首页"

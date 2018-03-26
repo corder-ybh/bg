@@ -6,6 +6,7 @@
 <link href="{$smarty.const.CSS_DIR}/base.css" rel="stylesheet">
 <link href="{$smarty.const.CSS_DIR}/index.css" rel="stylesheet">
 <link href="{$smarty.const.CSS_DIR}/media.css" rel="stylesheet">
+<link href="{$smarty.const.CSS_DIR}/login.css" rel="stylesheet">
 <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0">
 <!--[if lt IE 9]>
 <script src="{$smarty.const.JS_DIR}/modernizr.js"></script>
@@ -25,11 +26,39 @@
       <h2>
         <p><span>会员</span>登录</p>
       </h2>
-      <div>
+      <div style="width: 100%;">
         <form method="POST" action="index.php?p=Home&c=User&a=dealLogin" enctype="multipart/form-data">
-          <p>会员名：<input type="text" name="user_name">*请填写您的用户名</p>          
-          <p>密  码：<input type="password" name="pass1">*请填写您的密码</p>
-          <p><input type="submit" value="登录"></p>
+          <div class="panel">
+            <div class="panel-head"><strong>会员登录</strong></div>
+            <div class="panel-body" style="padding: 30px;">
+              <div class="form-group">
+                <div class="field field-icon-right">
+                  <input type="text" class="input" name="user_name" placeholder="登录账号"
+                         data-validate="required:请填写账号,length#>=5:账号长度不符合要求"/>
+                  <span class="icon icon-user"></span>
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="field field-icon-right">
+                  <input type="password" class="input" name="user_pass" placeholder="登录密码"
+                         data-validate="required:请填写密码,length#>=8:密码长度不符合要求"/>
+                  <span class="icon icon-key"></span>
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="field">
+                  <input type="text" class="input" name="passcode" placeholder="填写右侧的验证码"
+                         data-validate="required:请填写右侧的验证码"/>
+                  <img src="index.php?p=Back&c=Admin&a=captcha&"
+                       onclick="this.src='index.php?p=Back&c=Admin&a=captcha&n='+Math.random()" width="80" height="32"
+                       class="passcode"/>
+                </div>
+              </div>
+            </div>
+            <div class="panel-foot text-center">
+              <button class="button button-block bg-main text-big">立即登录后台</button>
+            </div>
+          </div>
         </form>
       </div>
     </div>
@@ -73,10 +102,6 @@
       <h2>
         <p>友情链接</p>
       </h2>
-      <ul>
-        <li><a href="">个人博客</a></li>
-        <li><a href="">传智播客论坛</a></li>
-      </ul>
     </div>
     {include file='../Public/copyright.html'}
   </aside>

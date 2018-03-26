@@ -20,7 +20,7 @@ class ArticleModel extends Model
         $addTime = time();
         //入库
         $sql = "insert into bg_article 
-           VALUES (null,$cate_id,'$title','$thumb','$art_desc','$content','$author',DEFAULT, DEFAULT, '$addTime', DEFAULT ,DEFAULT )";
+           VALUES (null,$cate_id,'$title','$thumb','$art_desc','$content','$author',DEFAULT, DEFAULT, '$addTime', DEFAULT ,DEFAULT,'$keywords')";
         return $this->dao->my_query($sql);
     }
 
@@ -31,6 +31,8 @@ class ArticleModel extends Model
     {
         //增加分页相关
         $pageNum = isset($_GET['pageNum']) ? $_GET['pageNum'] : 1;
+        //如果页码小于于0
+        $pageNum = $pageNum > 0 ? $pageNum : 1;
         $rowsPerPage = $GLOBALS['conf']['Page']['rowPerPage'];
         $offset = ($pageNum - 1) * $rowsPerPage;
 
@@ -58,7 +60,7 @@ class ArticleModel extends Model
     {
         extract($art);
         $sql = "UPDATE bg_article set cate_id=$cate_id, title='$title', thumb='$thumb', art_desc='$art_desc',
-            author='$author',content='$content' WHERE art_id=$art_id";
+            author='$author',content='$content',keywords='$keywords' WHERE art_id=$art_id";
         return $this->dao->my_query($sql);
     }
 

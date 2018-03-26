@@ -129,6 +129,12 @@ class UserController extends PlatformController
         $result = $user->check($user_name, md5($user_pass));
         if ($result) {
             //将用户信息存储到session中
+            $loginLog = Factory::M('loginlogModel');
+            $loginLogInfo = array();
+            $loginLogInfo['user_id'] = $result['user_id'];
+            $loginLogInfo['login_ip'] = $this->escapeData($_SERVER['REMOTE_ADDR']);
+            $loginLogInfo['login_client'] = $this->escapeData($_SERVER['HTTP_USER_AGENT']);
+            $loginLog->insertLoginLog($loginLogInfo);
             @session_start();
             $_SESSION['user_info'] = $result;  //数组信息
             $this->jump('index.php?p=Home&c=index&a=index');

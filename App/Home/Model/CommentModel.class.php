@@ -25,7 +25,7 @@ class CommentModel extends Model
      */
     public function getRowCountById($art_id)
     {
-        $sql = "SELECT COUNT(*) FROM bg_comment WHERE art_id=$art_id AND is_show = '1'";
+        $sql = "SELECT COUNT(*) FROM bg_comment WHERE art_id=$art_id AND cmt_status = '1'";
         return $this->dao->fetchColumn($sql);
     }
 
@@ -38,8 +38,25 @@ class CommentModel extends Model
     {
         $pageNum = isset($_GET['pageNum']) ? $_GET['pageNum'] : 1;
         $offset = ($pageNum - 1) * $rowsPerPage;
-        $sql = "SELECT c.*, u.user_image FROM bg_comment AS c LEFT JOIN bg_user AS u ON c.cmt_user = u.user_name 
-                    WHERE c.art_id = $art_id AND c.is_show='1' ORDER BY c.cmt_time ASC LIMIT $offset, $rowsPerPage";
+        $sql = "SELECT c.*, u.user_image,u.user_name
+                  FROM bg_comment AS c 
+                  LEFT JOIN bg_user AS u ON c.cmt_user = u.user_id 
+                  WHERE c.art_id = $art_id AND c.cmt_status='1' 
+                  ORDER BY c.cmt_time ASC LIMIT $offset, $rowsPerPage";
+        return $this->dao->fetchAll($sql);
+    }
+
+    /**
+     * 获取最新的评论
+     */
+    public function getLatestCmt($num)
+    {
+        $sql = "SELECT bc.*, bu.user_name, bu.user_image, bat.art_id
+                  FROM bg_comment bc 
+                  LEFT JOIN bg_article bat ON bc.art_id = bat.art_id
+                  LEFT JOIN bg_user bu ON bc.cmt_user = bu.user_id
+                  WHERE bc.cmt_status = '1'
+                  ORDER BY bc.cmt_time DESC LIMIT $num";
         return $this->dao->fetchAll($sql);
     }
 }

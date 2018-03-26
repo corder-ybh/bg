@@ -25,7 +25,8 @@ return array(
     //前台组
     'Home' => array(
         'default_controller' => 'Index',
-        'default_action' => 'index'
+        'default_action' => 'index',
+        'latestCmtNum' => '6'  //最新评论条数
     ),
     //后台组
     'Back' => array(
@@ -50,4 +51,5 @@ return array(
         'rowPerPage' => 8,    //每页显示的记录数
         'maxNum' => 5         //页面上能显示的最多页面
     ),
+
 );
