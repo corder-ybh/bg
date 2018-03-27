@@ -1,0 +1,20 @@
+  <header>
+    <h1>呦桃</h1>
+    <h2>哟哟鹿鸣，食野之苹...</h2>
+    <div class="logo"><a href="/"></a></div>
+    <nav id="topnav"><a href="index.php">首页</a>
+    {foreach from=$firstCate item='row'}
+        <a href="index.php?p=Home&c=Article&a=index&cate_id={$row.cate_id}">{$row.cate_name}</a>
+    {/foreach}
+    <a href="index.php?p=Home&c=SinglePage&a=index&page_id=1">关于本站</a>
+    {if $smarty.session.user_info.user_id|default:0 > 0}
+        <a style="font-size:12px;margin-left: 80px;padding: 0;" href="index.php?p=Home">
+            欢迎您，{$smarty.session.user_info.user_name}&nbsp;|
+        </a>
+        <a style="font-size:12px;padding: 0;" href="index.php?p=Home&c=User&a=logout">退出</a>
+    {else}
+        <a style="font-size: 12px;margin-left: 80px;padding: 0;" href="index.php?p=Home&c=User&a=login">登录|</a>
+        <a style="font-size:12px;padding: 0;" href="index.php?p=Home&c=User&a=register">注册</a>
+    </nav>
+    {/if}
+  </header>
