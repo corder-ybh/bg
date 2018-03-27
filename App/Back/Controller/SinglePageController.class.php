@@ -15,7 +15,7 @@ class SinglePageController extends PlatformController
     {
         //需要提取所有的页面信息
         //调用模型
-        $singlePage = Factory::M('SinglePageModel.class');
+        $singlePage = Factory::M('SinglePageModel');
         $pageInfo = $singlePage->getSinglePage();
         //分配变量
         $this->assign('pageInfo', $pageInfo);
@@ -45,7 +45,7 @@ class SinglePageController extends PlatformController
             $this->jump('index.php?p=Back&c=SinglePage&a=add', ':( 填写的信息不完整');
         }
         //调用模型，数据入库
-        $singlePage = Factory::M('SinglePageModel.class');
+        $singlePage = Factory::M('SinglePageModel');
         $result = $singlePage->insertPage($pageInfo);
         if ($result) {
             $this->jump('index.php?p=Back&c=SinglePage&a=index');
@@ -62,7 +62,7 @@ class SinglePageController extends PlatformController
         //接收单页id号
         $page_id = $_GET['page_id'];
         //获取当前单页的信息
-        $SinglePage = Factory::M('SinglePageModel.class');
+        $SinglePage = Factory::M('SinglePageModel');
         $pageInfoById = $SinglePage->getPageInfoById($page_id);
         //分配变量
         $this->assign('pageInfoById', $pageInfoById);
@@ -73,6 +73,24 @@ class SinglePageController extends PlatformController
     /**
      * 处理单页修改请求
      */
-    public function deleditAction()
-    {}
+    public function dealeditAction()
+    {
+        //接收表单
+        $pageInfo = array();
+        $pageInfo['page_id'] = $_POST['page_id'];
+        $pageInfo['title'] = $this->escapeData($_POST['title']);
+        $pageInfo['content'] = $this->escapeData($_POST['content']);
+        //判断数据的合法性
+        if (empty($pageInfo['page_id']) || empty($pageInfo['title']) || empty($pageInfo['content'])) {
+            $this->jump("index.php?p=Back&c=SinglePage&a=edit&page_id={$pageInfo['page_id']}",':( 填写的信息不完整');
+        }
+        //调用模型，数据入库
+        $singlePage = Factory::M('SinglePageModel');
+        $result = $singlePage->updatePageByid($pageInfo);
+        if ($result) {
+            $this->jump('index.php?p=Back&c=SinglePage&a=index');
+        } else {
+            $this->jump("index.php?p=Back&c=SinglePage&a=edit&page_id={$pageInfo['page_id']}", ':( 发生未知错误，添加失败');
+        }
+    }
 }

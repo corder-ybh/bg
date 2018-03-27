@@ -79,8 +79,8 @@ class Controller
 		        * {margin:0; padding:0;}
 		        div {width:390px; height:287px; border:1px #09C solid; position:absolute; left:50%; margin-left:-195px; top:10%;}
 		        div h2 {width:100%; height:30px; line-height:30px; background-color:#09C; font-size:14px; color:#FFF; text-indent:10px;}
-		        div p {height:120px; line-height:120px; text-align:center;}
-		        div p strong {font-size:26px;}
+		        div p {height:60px; line-height:120px; text-align:center;}
+		        div p strong {font-size:20px;}
 		    </style>
 			<div>
 		        <h2>提示信息</h2>

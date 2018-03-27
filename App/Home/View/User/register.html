@@ -1,15 +1,28 @@
 <!doctype html>
 <html>
 <head>
-<meta charset="utf-8">
-{include file='../Public/meta.html'}
-<link href="{$smarty.const.CSS_DIR}/base.css" rel="stylesheet">
-<link href="{$smarty.const.CSS_DIR}/index.css" rel="stylesheet">
-<link href="{$smarty.const.CSS_DIR}/media.css" rel="stylesheet">
-<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0">
-<!--[if lt IE 9]>
-<script src="{$smarty.const.JS_DIR}/modernizr.js"></script>
-<![endif]-->
+  <meta charset="utf-8">
+  {include file='../Public/meta.html'}
+
+  <link rel="stylesheet" href="{$smarty.const.CSS_DIR}/pintuer.css">
+  <link rel="stylesheet" href="{$smarty.const.CSS_DIR}/admin.css">
+  <link rel="stylesheet" type="text/css" href="{$smarty.const.CSS_DIR}/iconfont.css">
+  <script src="{$smarty.const.JS_DIR}/jquery.js"></script>
+  <script src="{$smarty.const.JS_DIR}/pintuer.js"></script>
+  <script src="{$smarty.const.JS_DIR}/respond.js"></script>
+  <script src="{$smarty.const.JS_DIR}/admin.js"></script>
+  <link type="image/x-icon" href="/favicon.ico" rel="shortcut icon" />
+  <link href="/favicon.ico" rel="bookmark icon" />
+
+
+  <!--link href="{$smarty.const.CSS_DIR}/login.css" rel="stylesheet"-->
+  <link href="{$smarty.const.CSS_DIR}/base.css" rel="stylesheet">
+  <link href="{$smarty.const.CSS_DIR}/index.css" rel="stylesheet">
+  <link href="{$smarty.const.CSS_DIR}/media.css" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0">
+  <!--[if lt IE 9]>
+  <script src="{$smarty.const.JS_DIR}/modernizr.js"></script>
+  <![endif]-->
 </head>
 <body>
 <div class="ibody">
@@ -23,17 +36,61 @@
     </div>
     <div class="bloglist">
       <h2>
-        <p><span>会员</span>注册</p>
+        <p><span>会员</span>登录</p>
       </h2>
-      <div>
-        <form method="POST" action="index.php?p=Home&c=User&a=dealRegister" enctype="multipart/form-data">
-          <p>会员名：<input type="text" name="user_name">*请填写您的用户名</p>          
-          <p>密  码：<input type="password" name="pass1">*请填写您的密码</p>          
-          <p>确  认：<input type="password" name="pass2">*请确认您的密码</p>          
-          <p>头  像：<input type="file" name="user_image"></p>   
-          <p><input type="submit" value="点击注册"></p>       
-        </form>
+
+
+      <div class="container" style="width: 73%;">
+        <div class="line">
+          <div class="xs6 xm4 xs3-move xm4-move">
+            <br /><br />
+            <div class="media media-y">
+              <a href="#" target="_blank"><img src="{$smarty.const.IMAGES_DIR}/logo.png" class="radius" alt="后台管理系统" /></a>
+            </div>
+            <br /><br />
+            <form action="index.php?p=Home&c=User&a=dealRegister" method="POST">
+              <div class="panel">
+                <div class="panel-head"><strong>会员注册</strong></div>
+                <div class="panel-body" style="padding:30px;">
+                  <div class="form-group">
+                    <div class="field field-icon-right">
+                      <input type="text" class="input" name="user_name" placeholder="登录账号" data-validate="required:请填写账号,length#>=5:账号长度应大于5" />
+                      <span class="icon icon-user"></span>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="field field-icon-right">
+                      <input type="password" class="input" name="pass1" placeholder="登录密码" data-validate="required:请填写密码,length#>=8:密码长度应大于8" />
+                      <span class="icon icon-key"></span>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="field field-icon-right">
+                      <input type="password" class="input" name="pass2" placeholder="确认密码" data-validate="required:请填写密码,length#>=8:密码长度应大于8" />
+                      <span class="icon icon-check"></span>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="field field-icon-right">
+                      <input type="text" class="input" name="user_email" placeholder="邮箱" data-validate="required:请填写邮箱" />
+                      <span class="icon icon-inbox"></span>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="field">
+                      <input type="text" class="input" name="passcode" placeholder="填写右侧的验证码" data-validate="required:请填写右侧的验证码" />
+                      <img src="index.php?p=Home&c=User&a=captcha&" onclick="this.src='index.php?p=Home&c=User&a=captcha&n='+Math.random()" width="80" height="32" class="passcode" />
+                    </div>
+                  </div>
+                </div>
+                <div class="panel-foot text-center"><button class="button button-block bg-main text-big">立即注册</button></div>
+              </div>
+            </form>
+          </div>
+        </div>
       </div>
+
+
     </div>
   </article>
   <aside>
@@ -49,10 +106,10 @@
       <p>电话：{$masterInfo.tel}</p>
       <p>邮箱：{$masterInfo.email}</p>
     </div>
-<div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a><a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a></div>
-{literal}
-<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"32"},"share":{},"image":{"viewList":["qzone","tsina","tqq","renren","weixin"],"viewText":"分享到：","viewSize":"24"},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["qzone","tsina","tqq","renren","weixin"]}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>  
-{/literal}
+    <div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a><a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a></div>
+    {literal}
+    <script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"32"},"share":{},"image":{"viewList":["qzone","tsina","tqq","renren","weixin"],"viewText":"分享到：","viewSize":"24"},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["qzone","tsina","tqq","renren","weixin"]}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+    {/literal}
     <div class="tj_news">
       <h2>
         <p class="tj_t1">最新文章</p>
@@ -75,16 +132,12 @@
       <h2>
         <p>友情链接</p>
       </h2>
-      <ul>
-        <li><a href="">个人博客</a></li>
-        <li><a href="">传智播客论坛</a></li>
-      </ul>
     </div>
     {include file='../Public/copyright.html'}
   </aside>
   <script src="{$smarty.const.JS_DIR}/silder.js"></script>
   <div class="clear"></div>
-  <!-- 清除浮动 --> 
+  <!-- 清除浮动 -->
 </div>
 </body>
 </html>

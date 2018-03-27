@@ -150,7 +150,7 @@ class ArticleController extends PlatformController
             $article = Factory::M('ArticleModel');
             $article->updateReplyNumsById($cmtInfo['art_id']);
             //跳转到该文章的内容页
-            $this->jump("index.php?p=Home&c=Article&a=show&art_id={$cmtInfo['art_id']}");
+            $this->jump("index.php?p=Home&c=Article&a=show&art_id={$cmtInfo['art_id']}","非常感谢您的评论，遵循国内相关法律法规，您的评论将在审核通过后给予显示！");
         } else {
             //插入失败
             $this->jump("index.php?p=Home&c=Article&a=show&art_id={$cmtInfo['art_id']}","评论失败，请联系管理员");

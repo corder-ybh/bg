@@ -95,6 +95,8 @@ ALTER TABLE bg_article ADD reply_nums INT UNSIGNED NOT NULL DEFAULT 0 AFTER hits
 ALTER TABLE bg_comment ADD cmt_status enum('0','1','2') NOT NULL DEFAULT '0' COMMENT '评论状态0未审核、1已审核、2已删除' ;
 ALTER TABLE bg_article ADD keywords VARCHAR(100) NOT NULL DEFAULT 'PHP博客' COMMENT '文章关键词';
 
+ALTER TABLE bg_user ADD user_mail VARCHAR(50) NOT NULL DEFAULT '123@qq.com' COMMENT '用户邮箱';
+
 CREATE TABLE bg_loginlog(
   log_id INT UNSIGNED PRIMARY KEY auto_increment,
   user_id INT UNSIGNED NOT NULL DEFAULT 0,

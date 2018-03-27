@@ -42,9 +42,19 @@ class UserController extends PlatformController
         $user_name = $this->escapeData($_POST['user_name']);
         $user_pass1 = trim($_POST['pass1']);
         $user_pass2 = trim($_POST['pass2']);
+        $user_email = $this->escapeData($_POST['user_email']);
+
+        //校验验证码
+        $passcode = trim($_POST['passcode']);
+        $captcha = Factory::M('Captcha');
+        if (!$captcha->checkCaptcha($passcode)) {
+            //验证码错误
+            $this->jump('index.php?p=Home&c=User&a=register', ':( 验证码错误！ ');
+        }
+
         //判断用户名或是否为空
-        if (empty($user_name) || empty($user_pass1) || empty($user_pass2)) {
-            $this->jump('index.php?p=Home&c=User&register', ':( 用户名或密码不能为空');
+        if (empty($user_name) || empty($user_pass1) || empty($user_pass2) || empty($user_email)) {
+            $this->jump('index.php?p=Home&c=User&register', ':( 请填写完整用户信息');
         }
         //两次密码应一致
         if ($user_pass1 !== $user_pass2) {
@@ -62,10 +72,16 @@ class UserController extends PlatformController
             //用户已存在
             $this->jump('index.php?p=Home&c=User&register', '用户名已被占用');
         }
+        //判断邮箱是否被占用
+        if ($user->if_email_exists($user_name)) {
+            //用户已存在
+            $this->jump('index.php?p=Home&c=User&register', '邮箱已被注册');
+        }
         $userInfo['user_name'] = $user_name;
         $userInfo['user_pass'] = md5($user_pass1);
+        $userInfo['user_email'] = $user_email;
         //判断是否上传了头像
-        if ($_FILES['user_image']['error'] != 4) {
+        if (isset($_FILES['user_image']['error'])&&($_FILES['user_image']['error']!=4)) {
             $upload = Factory::M('Upload');
             $allow = array('image/png', 'image/jpg', 'image/jpeg', 'image/gif');
             $path = UPLOADS_DIR . 'user';
@@ -120,10 +136,19 @@ class UserController extends PlatformController
     {
         //接收数据
         $user_name = $this->escapeData($_POST['user_name']);
-        $user_pass = trim($_POST['pass1']);
+        $user_pass = trim($_POST['user_pass']);
         if (empty($user_name) || empty($user_pass)) {
             $this->jump('index.php?p=Home&c=User*a=login', ':( 用户名或密码都不能为空');
         }
+
+        //校验验证码
+        $passcode = trim($_POST['passcode']);
+        $captcha = Factory::M('Captcha');
+        if (!$captcha->checkCaptcha($passcode)) {
+            //验证码错误
+            $this->jump('index.php?p=Home&c=User&a=login', ':( 验证码错误！ ');
+        }
+
         //校验用户名和密码
         $user = Factory::M('UserModel');
         $result = $user->check($user_name, md5($user_pass));
@@ -151,5 +176,14 @@ class UserController extends PlatformController
         unset($_SESSION['user_info']);
         session_destroy();
         $this->jump('index.php?p=Home&index&a=index');
+    }
+
+    /**
+     * 生成验证码
+     */
+    public function captchaAction()
+    {
+        $captcha = Factory::M('Captcha');
+        $captcha->generate();
     }
 }

@@ -19,13 +19,23 @@ class UserModel extends Model
     }
 
     /**
+     * 判断邮箱是否已被注册
+     * @param $user_email
+     */
+    public function if_email_exists($user_email)
+    {
+        $sql = "SELECT * FROM bg_user WHERE user_email = '$user_email'";
+        return $this->dao->fetchRow($sql);
+    }
+
+    /**
      * 注册用户信息入库
      * @param $userInfo array 用户信息
      */
     public function insertUser($userInfo)
     {
         extract($userInfo);
-        $sql = "INSERT INTO bg_user VALUES(null, '$user_name', '$user_pass', '$user_image', $user_time)";
+        $sql = "INSERT INTO bg_user VALUES(null, '$user_name', '$user_pass', '$user_image', $user_time, '$user_email')";
         return $this->dao->my_query($sql);
     }
 

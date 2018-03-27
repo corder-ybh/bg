@@ -3,10 +3,21 @@
 <head>
 <meta charset="utf-8">
 {include file='../Public/meta.html'}
+
+  <link rel="stylesheet" href="{$smarty.const.CSS_DIR}/pintuer.css">
+  <link rel="stylesheet" href="{$smarty.const.CSS_DIR}/admin.css"><!---->
+  <script src="{$smarty.const.JS_DIR}/jquery.js"></script>
+  <script src="{$smarty.const.JS_DIR}/pintuer.js"></script>
+  <script src="{$smarty.const.JS_DIR}/respond.js"></script>
+  <script src="{$smarty.const.JS_DIR}/admin.js"></script>
+  <link type="image/x-icon" href="/favicon.ico" rel="shortcut icon" />
+  <link href="/favicon.ico" rel="bookmark icon" />
+
+
+<!--link href="{$smarty.const.CSS_DIR}/login.css" rel="stylesheet"-->
 <link href="{$smarty.const.CSS_DIR}/base.css" rel="stylesheet">
 <link href="{$smarty.const.CSS_DIR}/index.css" rel="stylesheet">
 <link href="{$smarty.const.CSS_DIR}/media.css" rel="stylesheet">
-<link href="{$smarty.const.CSS_DIR}/login.css" rel="stylesheet">
 <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0">
 <!--[if lt IE 9]>
 <script src="{$smarty.const.JS_DIR}/modernizr.js"></script>
@@ -26,41 +37,47 @@
       <h2>
         <p><span>会员</span>登录</p>
       </h2>
-      <div style="width: 100%;">
-        <form method="POST" action="index.php?p=Home&c=User&a=dealLogin" enctype="multipart/form-data">
-          <div class="panel">
-            <div class="panel-head"><strong>会员登录</strong></div>
-            <div class="panel-body" style="padding: 30px;">
-              <div class="form-group">
-                <div class="field field-icon-right">
-                  <input type="text" class="input" name="user_name" placeholder="登录账号"
-                         data-validate="required:请填写账号,length#>=5:账号长度不符合要求"/>
-                  <span class="icon icon-user"></span>
-                </div>
-              </div>
-              <div class="form-group">
-                <div class="field field-icon-right">
-                  <input type="password" class="input" name="user_pass" placeholder="登录密码"
-                         data-validate="required:请填写密码,length#>=8:密码长度不符合要求"/>
-                  <span class="icon icon-key"></span>
-                </div>
-              </div>
-              <div class="form-group">
-                <div class="field">
-                  <input type="text" class="input" name="passcode" placeholder="填写右侧的验证码"
-                         data-validate="required:请填写右侧的验证码"/>
-                  <img src="index.php?p=Back&c=Admin&a=captcha&"
-                       onclick="this.src='index.php?p=Back&c=Admin&a=captcha&n='+Math.random()" width="80" height="32"
-                       class="passcode"/>
-                </div>
-              </div>
+
+
+      <div class="container" style="width: 73%;">
+        <div class="line">
+          <div class="xs6 xm4 xs3-move xm4-move">
+            <br /><br />
+            <div class="media media-y">
+              <a href="#" target="_blank"><img src="{$smarty.const.IMAGES_DIR}/logo.png" class="radius" alt="后台管理系统" /></a>
             </div>
-            <div class="panel-foot text-center">
-              <button class="button button-block bg-main text-big">立即登录后台</button>
-            </div>
+            <br /><br />
+            <form action="index.php?p=Home&c=User&a=dealLogin" method="POST">
+              <div class="panel">
+                <div class="panel-head"><strong>会员登录</strong></div>
+                <div class="panel-body" style="padding:30px;">
+                  <div class="form-group">
+                    <div class="field field-icon-right">
+                      <input type="text" class="input" name="user_name" placeholder="登录账号" data-validate="required:请填写账号,length#>=5:账号长度应大于5" />
+                      <span class="icon icon-user"></span>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="field field-icon-right">
+                      <input type="password" class="input" name="user_pass" placeholder="登录密码" data-validate="required:请填写密码,length#>=8:密码长度应大于8" />
+                      <span class="icon icon-key"></span>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="field">
+                      <input type="text" class="input" name="passcode" placeholder="填写右侧的验证码" data-validate="required:请填写右侧的验证码" />
+                      <img src="index.php?p=Home&c=User&a=captcha&" onclick="this.src='index.php?p=Home&c=User&a=captcha&n='+Math.random()" width="80" height="32" class="passcode" />
+                    </div>
+                  </div>
+                </div>
+                <div class="panel-foot text-center"><button class="button button-block bg-main text-big">立即登录</button></div>
+              </div>
+            </form>
           </div>
-        </form>
+        </div>
       </div>
+
+
     </div>
   </article>
   <aside>

@@ -37,4 +37,15 @@ class SinglePageModel extends Model
         $sql = "SELECT * FROM bg_singlePage WHERE page_id = $page_id";
         return $this->dao->fetchRow($sql);
     }
+
+    /**
+     * 更新单页信息
+     * @param $pageInfo
+     */
+    public function updatePageByid($pageInfo)
+    {
+        extract($pageInfo);
+        $sql = "UPDATE bg_singlePage SET title='$title', content='$content' WHERE page_id=$page_id";
+        return $this->dao->my_query($sql);
+    }
 }
