@@ -62,6 +62,7 @@ class ArticleController extends PlatformController
         $art['content'] = addslashes($_POST['content']);
         $art['art_desc'] = $this->escapeData($_POST['art_desc']);
         $art['author'] = $this->escapeData($_POST['author']);
+        $art['keywords'] = $this->escapeData($_POST['keywords']);
         //判断数据合法性
         if (empty($art['title']) || empty($art['content'])
             || empty($art['art_desc']) || empty($art['author'])) {
