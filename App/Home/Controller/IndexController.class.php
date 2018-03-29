@@ -32,6 +32,8 @@ class IndexController extends PlatformController
         //分配最新和最热文章列表的变量
         $this->assign('newArt', $newArt);
         $this->assign('rmdArtByHits', $rmdArtByHits);
+        //分配域名
+        $this->assign('domain', $GLOBALS['conf']['Home']['domain']);
 
         //显示输出
         $this->display('index.html');
