@@ -1,3 +1,0 @@
-1、创建后台首页
-2、创建public常量，在config/constants.php下
-3、页头和左侧菜单是公共的

@@ -2,6 +2,7 @@
 
 application/cache/*
 !application/cache/index.html
+App/Config/*
 
 application/logs/*
 !application/logs/index.html
@@ -30,3 +31,4 @@ user_guide_src/cilexer/pycilexer.egg-info/*
 /tests/results/
 App/Back/View_c/
 App/Home/View_c/
+

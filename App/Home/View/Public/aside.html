@@ -1,7 +1,7 @@
   <aside>
     <div class="rnav">
     {foreach from=$subCate item='row' key='key'}
-      <li class="rnav{$key % 4 + 1} "><a href="index.php?p=Home&c=Article&a=index&cate_id={$row.cate_id}">{$row.cate_name}</a></li>
+      <li class="rnav{$key % 4 + 1} "><a href="{$domain}index.php?p=Home&c=Article&a=index&cate_id={$row.cate_id}">{$row.cate_name}</a></li>
     {/foreach}
     </div>
     <div class="ph_news">
@@ -13,11 +13,11 @@
             {if $smarty.foreach.n1.iteration <= 3}
             <li>
               <span class="num{$smarty.foreach.n1.iteration}">{$smarty.foreach.n1.iteration}</span>
-                <a href="index.php?p=Home&c=Article&a=show&art_id={$row.art_id}">{$row.title}</a>
+                <a href="{$domain}index.php?p=Home&c=Article&a=show&art_id={$row.art_id}">{$row.title}</a>
             </li>
             {else}
             <li><span>{$smarty.foreach.n1.iteration}</span>
-              <a href="index.php?p=Home&c=Article&a=show&art_id={$row.art_id}">{$row.title}</a>
+              <a href="{$domain}index.php?p=Home&c=Article&a=show&art_id={$row.art_id}">{$row.title}</a>
             </li>
             {/if}
         {foreachelse}
@@ -29,7 +29,7 @@
       </h2>
       <ul>
       {foreach from=$sortByRecommend item='row'}
-        <li><a href="index.php?p=Home&c=Article&a=show&art_id={$row.art_id}">{$row.title}</a> </li>
+        <li><a href="{$domain}index.php?p=Home&c=Article&a=show&art_id={$row.art_id}">{$row.title}</a> </li>
       {/foreach}
       </ul>
       <h2>
@@ -43,7 +43,7 @@
           <dd>{$row.user_name}<!--{$row.cmt_time|date_format:'%Y-%m-%d %H:%M:%S'}-->
             <time>{$row.cmt_time|date_format:'%Y-%m-%d %H:%M:%S'}</time>
           </dd>
-          <dd><a href="index.php?p=Home&c=Article&a=show&art_id={$row.art_id}" style="color: #FF9933;">{$row.cmt_content}</a></dd>
+          <dd><a href="{$domain}index.php?p=Home&c=Article&a=show&art_id={$row.art_id}" style="color: #FF9933;">{$row.cmt_content}</a></dd>
         </dl>
         {foreachelse}
         <span style="color: #FFF;">暂无最新评论...</span>
