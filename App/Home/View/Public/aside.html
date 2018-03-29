@@ -1,0 +1,67 @@
+  <aside>
+    <div class="rnav">
+    {foreach from=$subCate item='row' key='key'}
+      <li class="rnav{$key % 4 + 1} "><a href="index.php?p=Home&c=Article&a=index&cate_id={$row.cate_id}">{$row.cate_name}</a></li>
+    {/foreach}
+    </div>
+    <div class="ph_news">
+      <h2>
+        <p>点击排行</p>
+      </h2>
+      <ul class="ph_n">
+        {foreach from=$sortByHits item='row' name='n1'}
+            {if $smarty.foreach.n1.iteration <= 3}
+            <li>
+              <span class="num{$smarty.foreach.n1.iteration}">{$smarty.foreach.n1.iteration}</span>
+                <a href="index.php?p=Home&c=Article&a=show&art_id={$row.art_id}">{$row.title}</a>
+            </li>
+            {else}
+            <li><span>{$smarty.foreach.n1.iteration}</span>
+              <a href="index.php?p=Home&c=Article&a=show&art_id={$row.art_id}">{$row.title}</a>
+            </li>
+            {/if}
+        {foreachelse}
+        <span style="color: #FFF;">暂无相关信息</span>
+        {/foreach}
+      </ul>
+      <h2>
+        <p>栏目推荐</p>
+      </h2>
+      <ul>
+      {foreach from=$sortByRecommend item='row'}
+        <li><a href="index.php?p=Home&c=Article&a=show&art_id={$row.art_id}">{$row.title}</a> </li>
+      {/foreach}
+      </ul>
+      <h2>
+        <p>最新评论</p>
+      </h2>
+      <ul class="pl_n">
+        {foreach from=$latestCmt item='row'}
+        <dl>
+          <dt><img src="/Uploads/user/{$row.user_image}"> </dt>
+          <dt> </dt>
+          <dd>{$row.user_name}<!--{$row.cmt_time|date_format:'%Y-%m-%d %H:%M:%S'}-->
+            <time>{$row.cmt_time|date_format:'%Y-%m-%d %H:%M:%S'}</time>
+          </dd>
+          <dd><a href="index.php?p=Home&c=Article&a=show&art_id={$row.art_id}" style="color: #FF9933;">{$row.cmt_content}</a></dd>
+        </dl>
+        {foreachelse}
+        <span style="color: #FFF;">暂无最新评论...</span>
+        {/foreach}
+      </ul>
+      <h2>
+        <p>最近访客</p>
+        <ul><!--
+          {foreach from=$visitor item='row'}
+          <!--img src="{$smarty.const.IMAGES_DIR}/vis.jpg"><!-- 直接使用“多说”插件的调用代码
+
+          {foreachelse}
+          <span style="color: #FFF;">暂无最近访客...</span>
+          {/foreach}-->
+          <!--img src="/Uploads/user/default.jpg"-->
+          <img src="{$smarty.const.IMAGES_DIR}/vis.jpg">
+        </ul>
+      </h2>
+    </div>
+    {include file="../Public/copyright.html"}
+  </aside>
