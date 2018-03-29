@@ -73,7 +73,7 @@
   <article>
     <h2 class="about_h">您现在的位置是：<a href="/">首页</a>
     {foreach from=$list item='row' key='key'}
-      ><a href="index.php?p=Home&c=Article&a=index&cate_id={$key}">{$row}</a>
+      ><a href="{$domain}index.php?p=Home&c=Article&a=index&cate_id={$key}">{$row}</a>
     {/foreach}
     </h2>
        <div class="index_about">
@@ -88,8 +88,8 @@
         {$artInfoById.content}
       </ul>
       <div class="nextinfo">
-        <p>上一篇：<a href="index.php?p=Home&c=Article&a=show&art_id={$prev.art_id|default:$smarty.get.art_id}">{$prev.title|default:'已经是第一篇了,没有了!'}</a></p>
-        <p>下一篇：<a href="index.php?p=Home&c=Article&a=show&art_id={$next.art_id|default:$smarty.get.art_id}">{$next.title|default:'已经是最后一篇了,没有了!'}</a></p>
+        <p>上一篇：<a href="{$domain}index.php?p=Home&c=Article&a=show&art_id={$prev.art_id|default:$smarty.get.art_id}">{$prev.title|default:'已经是第一篇了,没有了!'}</a></p>
+        <p>下一篇：<a href="{$domain}index.php?p=Home&c=Article&a=show&art_id={$next.art_id|default:$smarty.get.art_id}">{$next.title|default:'已经是最后一篇了,没有了!'}</a></p>
       </div>
       <div style="clear:both; height:10px;"></div>
       <div class="otherlink">
@@ -114,7 +114,7 @@
       <div class="otherlink">
         <h2>发布评论</h2>
       </div>
-      <form action="index.php?p=Home&c=Article&a=comment" method="post">
+      <form action="{$domain}index.php?p=Home&c=Article&a=comment" method="post">
         <textarea placeholder="说点什么吧…" title="Ctrl+Enter快捷提交" name="content"></textarea>
         <button type="submit" class="ds-post-button">发布</button>
         <input type="hidden" name="art_id" value="{$smarty.get.art_id}">

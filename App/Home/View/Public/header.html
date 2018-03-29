@@ -2,7 +2,7 @@
     <h1>呦桃</h1>
     <h2>哟哟鹿鸣，食野之苹...</h2>
     <div class="logo"><a href="/"></a></div>
-    <nav id="topnav"><a href="index.php">首页</a>
+    <nav id="topnav"><a href="{$domain}index.php">首页</a>
     {foreach from=$firstCate item='row'}
         <a href="{$domain}index.php?p=Home&c=Article&a=index&cate_id={$row.cate_id}">{$row.cate_name}</a>
     {/foreach}

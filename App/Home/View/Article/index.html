@@ -17,20 +17,20 @@
   <article>
     <h2 class="about_h">您现在的位置是：<a href="/">首页</a>
       {foreach from=$list item='row' key='key'}
-      ><a href="index.php?p=Home&c=Article&a=index&cate_id={$key}">{$row}</a>
+      ><a href="{$domain}index.php?p=Home&c=Article&a=index&cate_id={$key}">{$row}</a>
       {/foreach}
     </h2>
     <div class="bloglist">
       {foreach from=$artInfo item='row'}
       <div class="newblog">
         <ul>
-          <h3><a href="index.php?p=Home&c=Article&a=show&art_id={$row.art_id}">{$row.title}</a></h3>
+          <h3><a href="{$domain}index.php?p=Home&c=Article&a=show&art_id={$row.art_id}">{$row.title}</a></h3>
           <div class="autor">
             <span>作者：{$row.author}</span>
             <span>分类：[<a href="/">{$row.cate_name}</a>]</span>
             <span>浏览（<a href="/">{$row.hits}</a>）</span>
           </div>
-          <p>{$row.content|strip_tags|truncate:100:'...'}<a href="index.php?p=Home&c=Article&a=show&art_id={$row.art_id}" target="_blank" class="readmore">全文</a></p>
+          <p>{$row.content|strip_tags|truncate:100:'...'}<a href="{$domain}index.php?p=Home&c=Article&a=show&art_id={$row.art_id}" target="_blank" class="readmore">全文</a></p>
         </ul>
         <figure><img src="/Uploads/thumb/{$row.thumb}" ></figure>
         <div class="dateview">{$row.addtime|date_format:'%Y-%m-%d'}</div>
