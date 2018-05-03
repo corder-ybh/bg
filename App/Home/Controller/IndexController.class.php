@@ -17,7 +17,7 @@ class IndexController extends PlatformController
         //调用Article模型
         $article = Factory::M('ArticleModel');
         //获取推荐文章信息
-        $recommendArt = $article->getRecommendArt(5);
+        $recommendArt = $article->getRecommendArt($GLOBALS['conf']['Home']['RecommendArt']);
         //获取站长信息
         $master = Factory::M('MasterModel');
         $masterInfo = $master->getMasterInfo();

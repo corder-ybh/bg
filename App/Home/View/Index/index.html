@@ -37,7 +37,7 @@
         </ul>
         <p class="autor">
             <span>作者：{$row.author}</span>
-            <span>分类：【<a href={$domain}"index.php?p=Home&c=Article&a=index&cate_id={$row.cate_id}">{$row.cate_name}</a>】</span>
+            <span>分类：【<a href="{$domain}index.php?p=Home&c=Article&a=index&cate_id={$row.cate_id}">{$row.cate_name}</a>】</span>
             <span>浏览 (<a href="{$domain}index.php?p=Home&c=Article&a=show&art_id={$row.art_id}">{$row.hits}</a>)</span>
             <span>评论 (<a href="{$domain}index.php?p=Home&c=Article&a=show&art_id={$row.art_id}">{$row.reply_nums}</a> )</span>
         </p>
